@@ -7,7 +7,7 @@ Path: `SuccessStories/postcards/france/pacmans-postcard-01/index.html`
 
 ## Page title (browser tab)
 
-> Pacman’s · A year folded into a postcard
+> Pacman's · A french postcard from the Local Ouest
 > 
 
 ---
