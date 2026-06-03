@@ -34,15 +34,15 @@ Path: `SuccessStories/postcards/italy/faro-postcard-01/index.html`
 
 ### Subhead
 
-> Three workshops, February to April: spotting AI in everyday life; testing the limits of large language models through robotics and the Sustainable Development Goals; and examining gender bias in AI. More than twenty young explorers gathered at the Perlatecnica lab.
+> Four workshops, February to May: spotting AI in everyday life; testing the limits of large language models through robotics and the Sustainable Development Goals; examining gender bias in AI; and turning SDG 11 into a city audit with robot sensors. More than twenty young explorers gathered at the Perlatecnica lab.
 > 
 
 ### Stats
 
 | Number | Label |
 | --- | --- |
-| 3 | Sessions |
-| 7h30 | In the lab |
+| 4 | Sessions |
+| 10h15 | In the lab |
 | 23 | Researchers |
 
 ---
@@ -52,13 +52,14 @@ Path: `SuccessStories/postcards/italy/faro-postcard-01/index.html`
 ### Header
 
 - Title: **Workshops done**
-- Label: `Three sessions within the Faro Lab`
+- Label: `Four sessions within the Faro Lab`
 
 ### Steps
 
 1. **Feb 2026** · Keep an Eye on AI.
 2. **Mar 2026** · Illusion is all that matters.
 3. **Apr 2026** · BIAS: Genre Matters.
+4. **May 2026** · Make Cities Great Again.
 
 ---
 
@@ -141,6 +142,31 @@ Sharp and a bit indignant. They caught the AI making lazy assumptions, and calle
 
 **Best practice:**
 Show bias both as a social fact (laws, gaps) and as a technical fact (training data, classification boundaries). At fourteen to seventeen, the two read very differently, but young people start connecting them once both are on the table in the same session.
+
+---
+
+## Fiche 04 · May 2026 · accent green
+
+**Title:** Make Cities Great Again · SDG 11 from a city audit to a robot's senses.
+
+**What we ran:**
+Three steps to turn Sustainable Development Goal 11 into something concrete. The youth opened with a "City Audit": describing their commute, listing inclusivity and environmental barriers around their own neighbourhood, and mapping one local issue in pairs. They then explored the senses a robot would need to read a city: an air-quality sensor for CO2 and particulate matter, a sound sensor for noise pollution, a temperature and humidity sensor for urban heat islands. The session closed in a Python notebook, training a small neural network on simulated readings, then testing it on three scenarios (a sunny park, a traffic jam, a construction site) and reading the confusion matrix together.
+
+**Activity:**
+- Make Cities Great Again
+- Urban Blueprint, sensor array, scenario challenge · 2h45
+
+**Who:**
+- High-school researchers
+- 17 yo
+
+**Mood:**
+Engaged and a bit indignant. The City Audit hit close to home, then the live sensor readings switched them straight into engineering mode.
+
+**Skill tree:** SDG 11 · sensors · urban analysis · neural network · confusion matrix · data literacy
+
+**Best practice:**
+Anchor an abstract Sustainable Development Goal in their own street. At fourteen to seventeen, young people take an SDG much more seriously once they have audited their own commute against it.
 
 ---
 
