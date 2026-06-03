@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FARO · An Italian postcard from Perlatecnica</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&family=Patrick+Hand&family=Caveat:wght@400;700&display=swap');
+  :root {
+    --bg: #f7f4e8; --ink: #1a1a1a; --soft: #6c6c6c;
+    --green: #7ed957; --green-deep: #5fb83a; --green-soft: #dbffcb;
+    --pink: #fa89d2; --pink-deep: #d966ad; --pink-soft: #ffd9f2;
+    --yellow: #f9c724; --yellow-deep: #c99c00; --yellow-soft: #f9eecd;
+    --orange: #f37030; --orange-deep: #c95816; --orange-soft: #ffd5c1;
+    --blue: #38b6ff; --blue-deep: #1d8fd1; --blue-soft: #cbecff;
+    --pc-w: 1440px;
+    --pc-h: 800px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #f1f0ec;
+    font-family: 'Manrope', system-ui, sans-serif; color: var(--ink);
+    margin: 0; padding: 0;
+  }
+  html { overflow-x: hidden; }
+  body { padding: 40px 0 40px; }
+  h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; }
+
+  main {
+    width: var(--pc-w);
+    margin: 0 auto;
+    zoom: var(--pc-scale, 1);
+  }
+
+  .postcard {
+    position: relative;
+    width: 100%;
+    min-height: var(--pc-h);
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow:
+      0 0 0 3px var(--pink) inset,
+      0 0 0 6px #fffdf6 inset,
+      0 0 0 8px var(--orange) inset,
+      0 0 0 11px #fffdf6 inset,
+      0 0 0 13px var(--yellow) inset,
+      0 28px 70px rgba(0,0,0,0.16);
+  }
+
+  .corner-fold { display: none; }
+
+  .pc-inner {
+    padding: 56px 60px 48px;
+    height: 100%;
+    display: flex; flex-direction: column;
+  }
+  .postcard.is-open .pc-inner { height: auto; }
+
+  /* ===== Recto fills available canvas (1280 x 920 closed) ===== */
+  .recto {
+    flex: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+    min-height: 0;
+  }
+  .cover-image {
+    border-radius: 10px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      inset 0 0 0 3px var(--pink),
+      inset 0 0 0 5px #fff,
+      inset 0 0 0 8px var(--yellow);
+  }
+  .cover-image::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    background-image: url('hero.png');
+    background-size: cover; background-position: center;
+    border-radius: 4px;
+    filter: grayscale(1) sepia(0.15) contrast(0.95) brightness(1.08);
+  }
+
+  /* Two-line frames. 10 unique colour pairs from the YAL palette. */
+  .b-1  { box-shadow: inset 0 0 0 3px var(--pink),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--yellow); }
+  .b-2  { box-shadow: inset 0 0 0 3px var(--pink),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--orange); }
+  .b-3  { box-shadow: inset 0 0 0 3px var(--pink),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--blue); }
+  .b-4  { box-shadow: inset 0 0 0 3px var(--pink),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--green); }
+  .b-5  { box-shadow: inset 0 0 0 3px var(--yellow), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--orange); }
+  .b-6  { box-shadow: inset 0 0 0 3px var(--yellow), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--blue); }
+  .b-7  { box-shadow: inset 0 0 0 3px var(--yellow), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--green); }
+  .b-8  { box-shadow: inset 0 0 0 3px var(--orange), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--blue); }
+  .b-9  { box-shadow: inset 0 0 0 3px var(--orange), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--green); }
+  .b-10 { box-shadow: inset 0 0 0 3px var(--blue),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--green); }
+
+  .cover-text {
+    display: flex; flex-direction: column;
+    gap: 18px;
+    padding-right: 220px;
+    height: 100%;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 11px; background: var(--pink-soft); color: var(--pink-deep);
+    border-radius: 9px; font-size: 10px; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .pill.orange { background: var(--orange-soft); color: var(--orange-deep); }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  h1 { font-size: 38px; font-weight: 900; line-height: 1.02; letter-spacing: -1px; color: var(--ink); }
+  h1 em { color: var(--pink); font-style: normal; }
+  .subhead { font-size: 15px; color: var(--soft); line-height: 1.55; }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 8px; margin-top: auto;
+  }
+  .stat {
+    background: #fff; border-radius: 9px;
+    padding: 12px 12px 10px;
+    box-shadow: 0 0 0 2px var(--pink) inset;
+  }
+  .stat .n { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; line-height: 1; color: var(--ink); }
+  .stat .l { font-size: 9px; font-weight: 800; color: var(--soft); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 5px; display: block; }
+  .stat.s2 { box-shadow: 0 0 0 2px var(--orange) inset; }
+  .stat.s3 { box-shadow: 0 0 0 2px var(--yellow) inset; }
+
+  /* ===== Stamp (straight, with team avatar + lab logo) ===== */
+  .stamp-block {
+    position: absolute; top: 56px; right: 60px;
+    width: 170px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .stamp {
+    position: relative;
+    width: 150px;
+    background:
+      linear-gradient(180deg, var(--yellow-soft) 0 42%, #fff 42% 72%, var(--pink-soft) 72% 100%);
+    border-radius: 10px;
+    padding: 22px 18px 20px;
+    box-shadow:
+      inset 0 0 0 3px var(--yellow),
+      inset 0 0 0 5px #fff,
+      inset 0 0 0 8px var(--pink),
+      0 10px 20px rgba(0,0,0,0.16);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .stamp .team-avatar {
+    width: 56px; height: 56px;
+    background: #fff;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; line-height: 1;
+    box-shadow:
+      inset 0 0 0 2px var(--yellow),
+      0 0 0 2px #fff,
+      0 0 0 4px var(--pink),
+      0 0 0 6px #fff,
+      0 0 0 8px var(--blue);
+  }
+  .stamp .s-logo {
+    width: 96px;
+    display: block;
+    margin-top: 6px;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+  }
+  /* Round cancellation postmark, BELOW the stamp (no overlap) */
+  .postmark {
+    position: absolute; top: 175px; left: 30px;
+    width: 110px; height: 110px;
+    border: 3.5px solid var(--orange-deep);
+    border-radius: 50%;
+    transform: rotate(-8deg);
+    opacity: 0.9;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent;
+  }
+  .postmark::before {
+    content: '';
+    position: absolute; inset: 6px;
+    border: 2px solid var(--orange-deep);
+    border-radius: 50%;
+    opacity: 0.9;
+  }
+  .postmark-text {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 900; font-size: 12px;
+    color: var(--orange-deep);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .postmark-text small {
+    display: block; font-size: 10px; opacity: 1; margin-top: 4px;
+    letter-spacing: 0.06em; font-weight: 800;
+  }
+  /* Waves trailing horizontally just below the postmark */
+  .postmark-waves {
+    position: absolute; top: 298px; left: -5px;
+    width: 170px; height: 16px;
+    opacity: 0.7;
+    transform: rotate(-4deg);
+  }
+
+  /* ===== Unfold control ===== */
+  .unfold-row {
+    margin-top: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .unfold-line { flex: 1; height: 2px; background: var(--pink); border-radius: 2px; opacity: 0.5; }
+  .unfold-btn {
+    appearance: none; border: none; cursor: pointer;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--pink-deep); background: var(--pink-soft);
+    padding: 12px 20px; border-radius: 10px;
+    display: inline-flex; align-items: center; gap: 10px;
+    box-shadow: 0 0 0 2px var(--pink) inset, 0 3px 0 var(--pink-deep);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .unfold-btn:hover { transform: translateY(-1px); box-shadow: 0 0 0 2px var(--pink) inset, 0 4px 0 var(--pink-deep); }
+  .unfold-btn:active { transform: translateY(2px); box-shadow: 0 0 0 2px var(--pink) inset, 0 1px 0 var(--pink-deep); }
+  .unfold-btn .arrow { display: inline-block; transition: transform 0.25s ease; font-size: 14px; }
+  .postcard.is-open .unfold-btn .arrow { transform: rotate(90deg); }
+
+  /* ===== Accordion fiches ===== */
+  .accordion { display: none; margin-top: 0; }
+  .postcard.is-open .accordion { display: block; margin-top: 24px; }
+
+  .fiche {
+    border-radius: 12px;
+    background: #fff;
+    margin-bottom: 18px;
+    overflow: hidden;
+    border: 2.5px solid var(--f-accent, var(--pink));
+    box-shadow:
+      0 10px 24px rgba(0,0,0,0.10),
+      0 2px 6px rgba(0,0,0,0.05);
+    transition: box-shadow 0.18s ease;
+  }
+  .fiche.is-open {
+    box-shadow:
+      0 22px 48px rgba(0,0,0,0.16),
+      0 4px 10px rgba(0,0,0,0.06);
+  }
+
+  .fiche-head {
+    display: grid;
+    grid-template-columns: 48px 110px 1fr auto;
+    align-items: center; gap: 16px;
+    padding: 14px 20px;
+    cursor: pointer;
+    background: #fff;
+  }
+  .fiche-num {
+    width: 40px; height: 40px; border-radius: 11px;
+    background: var(--f-accent, var(--pink));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 16px;
+    box-shadow: 0 0 0 2px #fff inset, 0 0 0 3px var(--f-accent, var(--pink)) inset;
+  }
+  .fiche-when {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--f-accent-deep, var(--pink-deep));
+    line-height: 1.5;
+  }
+  .fiche-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 17px; line-height: 1.2;
+    color: var(--ink);
+  }
+  .fiche-toggle {
+    font-size: 14px; color: var(--soft);
+    display: inline-flex; align-items: center;
+    user-select: none;
+  }
+  .fiche-toggle .chev { display: inline-block; transition: transform 0.2s ease; }
+  .fiche.is-open .fiche-toggle .chev { transform: rotate(90deg); }
+  .fiche.is-open .fiche-toggle { color: var(--f-accent-deep, var(--pink-deep)); }
+
+  .fiche-body { display: none; }
+  .fiche.is-open .fiche-body { display: block; }
+
+  .fiche-content {
+    padding: 6px 20px 22px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 20px;
+  }
+  /* Photo stack: 1 main + 2 thumbs, uniform 5-color frame matching the postcard */
+  .photo-stack { display: flex; flex-direction: column; gap: 10px; }
+  .photo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .fiche-photo {
+    border-radius: 9px;
+    background-size: cover; background-position: center;
+    background-color: var(--f-accent-soft, var(--pink-soft));
+    position: relative;
+    box-shadow: inset 0 0 0 3px var(--f-accent, var(--pink));
+  }
+  .fiche-photo.main { height: 200px; }
+  .fiche-photo.thumb { height: 120px; }
+  .fiche-photo.no-photo {
+    display: flex; align-items: center; justify-content: center;
+    height: 220px;
+    background: var(--f-accent-soft, var(--pink-soft));
+    color: var(--f-accent-deep, var(--pink-deep));
+    font-family: 'Patrick Hand', cursive;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-align: center; padding: 0 16px;
+  }
+
+  .fiche-right { display: flex; flex-direction: column; gap: 12px; }
+
+  .moment {
+    font-size: 14px; line-height: 1.55;
+    color: var(--ink);
+  }
+  .moment-label {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--f-accent-deep, var(--pink-deep)); margin-bottom: 6px;
+  }
+
+  .quote {
+    background: var(--f-accent-soft, var(--pink-soft));
+    border-radius: 9px;
+    padding: 14px 18px 12px 26px;
+    font-family: 'Caveat', cursive;
+    font-size: 20px; line-height: 1.25;
+    color: var(--ink);
+    position: relative;
+  }
+  .quote::before {
+    content: '"'; position: absolute; top: -2px; left: 10px;
+    font-size: 38px; font-family: 'Bricolage Grotesque', sans-serif;
+    color: var(--f-accent, var(--pink)); opacity: 0.5; line-height: 1;
+  }
+  .quote-by {
+    display: block; margin-top: 6px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px; font-weight: 700; color: var(--f-accent-deep, var(--pink-deep));
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .info-block.mood-block {
+    background: var(--f-accent-soft, var(--pink-soft));
+    box-shadow: none;
+  }
+  .info-block.mood-block .info-key {
+    color: var(--f-accent-deep, var(--pink-deep));
+  }
+
+  .keep {
+    background: var(--green-soft);
+    border-radius: 9px;
+    padding: 12px 16px;
+    font-size: 13.5px; line-height: 1.5; color: var(--green-deep);
+    font-weight: 600;
+  }
+  .keep-label {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--green-deep); margin-bottom: 4px;
+  }
+
+  .info-row {
+    display: grid; grid-template-columns: 3fr 2fr 5fr; gap: 8px;
+  }
+  .info-block {
+    background: #fff; border-radius: 9px;
+    padding: 10px 13px;
+    box-shadow: 0 0 0 1.5px rgba(0,0,0,0.06) inset;
+  }
+  .info-block.full { grid-column: 1 / -1; }
+  .info-key {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--soft); margin-bottom: 3px; display: block;
+  }
+  .info-val { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+  .info-meta { font-size: 11px; color: var(--soft); margin-top: 2px; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+  .tag {
+    background: var(--f-accent-soft, var(--pink-soft));
+    color: var(--f-accent-deep, var(--pink-deep));
+    padding: 3px 9px; border-radius: 6px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+  }
+
+  .status-chip {
+    display: inline-block;
+    padding: 2px 7px; border-radius: 5px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 8px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .status-chip.done { background: var(--green-soft); color: var(--green-deep); }
+
+  /* ===== Past timeline (closed view only) ===== */
+  .past-wrap {
+    margin-top: 24px;
+    padding: 18px 22px 20px;
+    background: #fff;
+    border-radius: 11px;
+    box-shadow: 0 0 0 2px var(--green) inset, 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .postcard.is-open .past-wrap { display: none; }
+  .past-wrap .timeline-head h3 { color: var(--ink); }
+  .past-wrap .timeline-head .label {
+    color: var(--green-deep); background: var(--green-soft);
+  }
+  .timeline-past {
+    position: relative;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 16px 4px 0;
+  }
+  .timeline-past::before {
+    content: '';
+    position: absolute; top: 26px; left: 4%; right: 4%;
+    height: 2.5px;
+    background: repeating-linear-gradient(to right, var(--green) 0 8px, transparent 8px 14px);
+    z-index: 0;
+  }
+  .timeline-past .t-step {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    padding: 0 4px;
+  }
+  .timeline-past .t-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--green);
+    margin-bottom: 12px;
+  }
+  .timeline-past .t-when {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--green-deep);
+    margin-bottom: 5px;
+  }
+  .timeline-past .t-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 13px; line-height: 1.2;
+    color: var(--ink);
+  }
+
+  /* ===== Timeline-many: 11 spots in one row + one shared subtext ===== */
+  .timeline.timeline-many {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 6px;
+    padding: 18px 4px 0;
+  }
+  .timeline.timeline-many .t-step { padding: 0 2px; }
+  .timeline.timeline-many .t-step .t-when {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    margin-bottom: 0;
+  }
+  .timeline.timeline-many .t-step .t-title,
+  .timeline.timeline-many .t-step .t-intent { display: none; }
+  .coming-text {
+    margin-top: 18px;
+    font-size: 13.5px;
+    color: var(--soft);
+    line-height: 1.55;
+    padding: 0 6px;
+  }
+
+  /* ===== Timeline for upcoming ===== */
+  .timeline-wrap {
+    margin-top: 28px;
+    padding: 22px 24px 24px;
+    background: #fff;
+    border-radius: 11px;
+    box-shadow: 0 0 0 2px var(--yellow) inset, 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .timeline-head {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .timeline-head h3 {
+    font-size: 16px; font-weight: 800; letter-spacing: -0.3px; color: var(--ink);
+  }
+  .timeline-head .label {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--yellow-deep);
+    background: var(--yellow-soft);
+    padding: 3px 9px; border-radius: 6px;
+  }
+  .timeline {
+    position: relative;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 18px 8px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; top: 28px; left: 8%; right: 8%;
+    height: 2.5px;
+    background: repeating-linear-gradient(to right, var(--yellow) 0 8px, transparent 8px 14px);
+    z-index: 0;
+  }
+  .t-step {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    padding: 0 12px;
+  }
+  .t-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 0 2.5px var(--yellow), 0 0 0 5px #fff;
+    margin-bottom: 12px;
+    position: relative; z-index: 2;
+  }
+  .t-step.tomorrow .t-dot { box-shadow: 0 0 0 2.5px var(--orange), 0 0 0 5px #fff; }
+  .t-when {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--yellow-deep);
+    margin-bottom: 6px;
+  }
+  .t-step.tomorrow .t-when { color: var(--orange-deep); }
+  .t-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 15px; line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .t-intent {
+    font-size: 12.5px; color: var(--soft); line-height: 1.45;
+    max-width: 380px;
+  }
+
+  .accent-pink { --f-accent: var(--pink); --f-accent-deep: var(--pink-deep); --f-accent-soft: var(--pink-soft); }
+  .accent-orange { --f-accent: var(--orange); --f-accent-deep: var(--orange-deep); --f-accent-soft: var(--orange-soft); }
+  .accent-yellow { --f-accent: var(--yellow); --f-accent-deep: var(--yellow-deep); --f-accent-soft: var(--yellow-soft); }
+  .accent-green { --f-accent: var(--green); --f-accent-deep: var(--green-deep); --f-accent-soft: var(--green-soft); }
+  .accent-blue { --f-accent: var(--blue); --f-accent-deep: var(--blue-deep); --f-accent-soft: var(--blue-soft); }
+
+</style>
+</head>
+<body>
+
+<main>
+<article class="postcard" id="postcard">
+  <div class="corner-fold"></div>
+  <div class="stamp-block">
+    <svg class="postmark-waves" viewBox="0 0 200 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 0 6 Q 15 -3, 30 6 T 60 6 T 90 6 T 120 6 T 150 6 T 180 6 T 200 6" fill="none" stroke="#c95816" stroke-width="2.6"/>
+      <path d="M 0 14 Q 15 5, 30 14 T 60 14 T 90 14 T 120 14 T 150 14 T 180 14 T 200 14" fill="none" stroke="#c95816" stroke-width="2.6"/>
+    </svg>
+    <div class="postmark">
+      <div class="postmark-text">
+        Napoli<br><small>18/06/2026</small>
+      </div>
+    </div>
+    <div class="stamp">
+      <div class="team-avatar">
+        <svg viewBox="0 0 100 100" width="52" height="52" xmlns="http://www.w3.org/2000/svg" aria-label="Cornicello, Neapolitan good-luck horn">
+          <!-- Hanging ring -->
+          <circle cx="50" cy="10" r="4" fill="none" stroke="#7a5a16" stroke-width="2"/>
+          <!-- Gold cap -->
+          <rect x="40" y="14" width="20" height="8" rx="1.5" fill="#e6b73e" stroke="#7a5a16" stroke-width="1.4"/>
+          <!-- Horn body, curved like a comma -->
+          <path d="M 41 22
+                   C 64 30, 64 52, 56 66
+                   C 50 78, 38 88, 30 84
+                   C 34 80, 44 75, 48 62
+                   C 52 48, 50 32, 41 22 Z"
+                fill="#d32f2f" stroke="#7a1818" stroke-width="1.6" stroke-linejoin="round"/>
+          <!-- Highlight -->
+          <path d="M 50 30 Q 56 42, 54 56" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <img src="logo.png" alt="Perlatecnica logo" class="s-logo">
+    </div>
+  </div>
+
+  <div class="pc-inner">
+
+    <!-- RECTO at postcard ratio 2138:1538 -->
+    <section class="recto">
+      <div class="cover-image b-1"></div>
+      <div class="cover-text">
+        <div class="pill-row">
+          <span class="pill">FARO · Italy</span>
+          <span class="pill orange">Feb 2026 → Jun 2026</span>
+        </div>
+        <h1>From FARO to the <em>Youth AI Lab</em> · curiosity on board.</h1>
+        <p class="subhead">Three workshops, February to April: spotting AI in everyday life; testing the limits of large language models through robotics and the Sustainable Development Goals; and examining gender bias in AI. More than twenty young explorers gathered at the Perlatecnica lab.</p>
+        <div class="stats">
+          <div class="stat"><span class="n">3</span><span class="l">Sessions</span></div>
+          <div class="stat s2"><span class="n">7h30</span><span class="l">In the lab</span></div>
+          <div class="stat s3"><span class="n">23</span><span class="l">Researchers</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAST TIMELINE (closed view only) -->
+    <div class="past-wrap">
+      <div class="timeline-head">
+        <h3>Workshops done</h3>
+        <span class="label">Three sessions within the Faro Lab</span>
+      </div>
+      <div class="timeline-past">
+        <div class="t-step">
+          <div class="t-dot"></div>
+          <div class="t-when">Feb 2026</div>
+          <div class="t-title">Keep an Eye on AI.</div>
+        </div>
+        <div class="t-step">
+          <div class="t-dot"></div>
+          <div class="t-when">Mar 2026</div>
+          <div class="t-title">Illusion is all that matters.</div>
+        </div>
+        <div class="t-step">
+          <div class="t-dot"></div>
+          <div class="t-when">Apr 2026</div>
+          <div class="t-title">BIAS: Genre Matters.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNFOLD -->
+    <div class="unfold-row">
+      <span class="unfold-line"></span>
+      <button class="unfold-btn" id="unfoldBtn" type="button">
+        <span class="unfold-label">Unfold the journey</span> <span class="arrow">▸</span>
+      </button>
+      <span class="unfold-line"></span>
+    </div>
+
+    <!-- ACCORDION (only sessions done) -->
+    <div class="accordion" id="accordion">
+
+      <div class="fiche accent-pink is-open">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">01</div>
+          <div class="fiche-when">Feb 2026<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">Keep an Eye on AI · spotting AI in everyday life.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-01.png');"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-01-b.png');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-01-c.png');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                A first session to set the baseline. The youth began by sharing what they thought AI was and where they had already encountered it. We then unpacked three simple ideas beneath the buzzword: AI systems collect data, learn from examples, and output decisions or predictions. In small groups, the youth became AI detectives, scanning everyday systems (traffic lights, apps, facial recognition, recommendation feeds, surveillance) and sorting what was truly AI from what was simple automation. We closed by drawing a clear line between fixed rules and learning algorithms.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">Keep an Eye on AI, phase one</div>
+                  <div class="info-meta">PPT, observation sheets, group detectives · 2h30</div>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">High-school researchers</div>
+                  <div class="info-meta">17 yo</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Curious and competitive. The groups debated intensely about whether each example truly qualified as AI.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skill tree</span>
+                  <div class="tag-row">
+                    <span class="tag">AI literacy</span>
+                    <span class="tag">observation</span>
+                    <span class="tag">digital citizenship</span>
+                    <span class="tag">categorisation</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                At fourteen to seventeen, young people arrive with strong but mixed intuitions about AI. Starting from their own examples, then sorting them together, is what makes the boundary between automation and intelligence stick for good.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fiche accent-blue">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">02</div>
+          <div class="fiche-when">Mar 2026<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">Illusion is all that matters · LLM limits, robotics and SDGs.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-02.png');"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-02-b.png');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-02-c.png');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                Four steps to crack open what is really happening inside an AI. The youth started with a recent research paper on the limits of large language models, noticing that the system does not "reason"; it predicts sequences. They then met Otto, the robot that will guide the year's project, and began linking concrete robotic ideas to the United Nations Sustainable Development Goals (smart waste collection, accessibility tools). A short engineering detour compared running the "brain" locally on the robot versus in the cloud. We closed with a reinforcement-learning analogy: training a dog with treats.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">Illusion is all that matters</div>
+                  <div class="info-meta">LLM paper, Otto robot, SDG mapping, RL analogy · 2h30</div>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">High-school researchers</div>
+                  <div class="info-meta">17 yo</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Engaged and serious. The paper was dense; the group followed it more closely than the facilitators expected.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skill tree</span>
+                  <div class="tag-row">
+                    <span class="tag">LLM literacy</span>
+                    <span class="tag">reinforcement learning</span>
+                    <span class="tag">robotics</span>
+                    <span class="tag">SDGs</span>
+                    <span class="tag">system design</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                Pair an abstract concept (LLM limits, reinforcement learning) with a concrete handle (a real robot, a recent paper, an SDG). At fourteen to seventeen, young people need both ends of the bridge in the same session for the concept to land.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fiche accent-orange">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">03</div>
+          <div class="fiche-when">Apr 2026<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">BIAS, Genre Matters · catching the AI on assumptions.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="fiche-photo main" style="background-image: url('step-03.png'); height: 100%; min-height: 280px;"></div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                An afternoon on bias. The youth first explored Sustainable Development Goal 5 (gender equality) through legal and economic lenses, hunting for gaps in property and marriage laws around the world. They then tested large language models with deliberately framed prompts (a story about a doctor and a nurse; "the qualities of a strong leader") and documented the system's assumptions on a Gap Analysis sheet. The technical segment used a small neural network to classify gender from height and weight, then to discover the "Human Edge": everything identity contains that a simple binary can never capture. We closed with a sticky-note feedback round.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">BIAS, Genre Matters</div>
+                  <div class="info-meta">SDG 5, LLM probing, binary classifier · 2h30</div>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">High-school researchers</div>
+                  <div class="info-meta">17 yo</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Sharp and a bit indignant. They caught the AI making lazy assumptions, and called them out by name.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skill tree</span>
+                  <div class="tag-row">
+                    <span class="tag">bias detection</span>
+                    <span class="tag">prompt design</span>
+                    <span class="tag">data literacy</span>
+                    <span class="tag">SDG 5</span>
+                    <span class="tag">classification</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                Show bias both as a social fact (laws, gaps) and as a technical fact (training data, classification boundaries). At fourteen to seventeen, the two read very differently, but young people start connecting them once both are on the table in the same session.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== TIMELINE for upcoming (11 spots + shared subtext) ===== -->
+      <div class="timeline-wrap">
+        <div class="timeline-head">
+          <h3>Still to come</h3>
+          <span class="label">Ten workshops on the calendar</span>
+        </div>
+        <div class="timeline timeline-many">
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">03/06/2026</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">23/09/2026</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">14/10/2026</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">11/11/2026</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">09/12/2026</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">13/01/2027</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">10/02/2027</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">10/03/2027</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">14/04/2027</div></div>
+          <div class="t-step tomorrow"><div class="t-dot"></div><div class="t-when">12/05/2027</div></div>
+        </div>
+        <p class="coming-text">
+          Monthly sessions are already on the calendar through May 2027, continuing the threads opened in the first three workshops: AI literacy, robotics, and the Sustainable Development Goals. A detailed plan for each session will be shared as it is delivered.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script>
+  // Fit the postcard to any screen while keeping its layout identical.
+  // The card is internally 1440×800 (closed); we shrink it with `zoom`
+  // when the viewport is narrower than that, never enlarge beyond 1.
+  function fitPostcard() {
+    const cardW = 1440;
+    const cardH = 800;
+    const hMargin = 40;
+    const vMargin = 40;
+    const availW = window.innerWidth - hMargin * 2;
+    const availH = window.innerHeight - vMargin * 2;
+    const scale = Math.min(1, availW / cardW, availH / cardH);
+    document.documentElement.style.setProperty('--pc-scale', String(scale));
+  }
+  fitPostcard();
+  window.addEventListener('resize', fitPostcard);
+
+  const postcard = document.getElementById('postcard');
+  const unfoldBtn = document.getElementById('unfoldBtn');
+  const labelEl = unfoldBtn.querySelector('.unfold-label');
+
+  unfoldBtn.addEventListener('click', () => {
+    postcard.classList.toggle('is-open');
+    labelEl.textContent = postcard.classList.contains('is-open') ? 'Fold back' : 'Unfold the journey';
+  });
+
+  function toggleFiche(headEl) {
+    const fiche = headEl.parentElement;
+    fiche.classList.toggle('is-open');
+  }
+</script>
+
+</body>
+</html>

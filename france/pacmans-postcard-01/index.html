@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pacman's · A year folded into a postcard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&family=Patrick+Hand&family=Caveat:wght@400;700&display=swap');
+  :root {
+    --bg: #f7f4e8; --ink: #1a1a1a; --soft: #6c6c6c;
+    --green: #7ed957; --green-deep: #5fb83a; --green-soft: #dbffcb;
+    --pink: #fa89d2; --pink-deep: #d966ad; --pink-soft: #ffd9f2;
+    --yellow: #f9c724; --yellow-deep: #c99c00; --yellow-soft: #f9eecd;
+    --orange: #f37030; --orange-deep: #c95816; --orange-soft: #ffd5c1;
+    --blue: #38b6ff; --blue-deep: #1d8fd1; --blue-soft: #cbecff;
+    --pc-w: 1440px;
+    --pc-h: 800px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #f1f0ec;
+    font-family: 'Manrope', system-ui, sans-serif; color: var(--ink);
+    margin: 0; padding: 0;
+  }
+  html { overflow-x: hidden; }
+  body { padding: 40px 0 40px; }
+  h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; }
+
+  main {
+    width: var(--pc-w);
+    margin: 0 auto;
+    zoom: var(--pc-scale, 1);
+  }
+
+  .postcard {
+    position: relative;
+    width: 100%;
+    min-height: var(--pc-h);
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow:
+      0 0 0 3px var(--pink) inset,
+      0 0 0 6px #fffdf6 inset,
+      0 0 0 8px var(--orange) inset,
+      0 0 0 11px #fffdf6 inset,
+      0 0 0 13px var(--yellow) inset,
+      0 28px 70px rgba(0,0,0,0.16);
+  }
+
+  .corner-fold { display: none; }
+
+  .pc-inner {
+    padding: 56px 60px 48px;
+    height: 100%;
+    display: flex; flex-direction: column;
+  }
+  .postcard.is-open .pc-inner { height: auto; }
+
+  /* ===== Recto fills available canvas (1280 x 920 closed) ===== */
+  .recto {
+    flex: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+    min-height: 0;
+  }
+  .cover-image {
+    border-radius: 10px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-image::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    background-image: url('hero.webp');
+    background-size: cover; background-position: center;
+    border-radius: 4px;
+    filter: grayscale(1) sepia(0.15) contrast(0.95) brightness(1.08);
+  }
+
+  /* Two-line frames. 10 unique colour pairs from the YAL palette. */
+  .b-1  { box-shadow: inset 0 0 0 3px var(--pink),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--yellow); }
+  .b-2  { box-shadow: inset 0 0 0 3px var(--pink),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--orange); }
+  .b-3  { box-shadow: inset 0 0 0 3px var(--pink),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--blue); }
+  .b-4  { box-shadow: inset 0 0 0 3px var(--pink),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--green); }
+  .b-5  { box-shadow: inset 0 0 0 3px var(--yellow), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--orange); }
+  .b-6  { box-shadow: inset 0 0 0 3px var(--yellow), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--blue); }
+  .b-7  { box-shadow: inset 0 0 0 3px var(--yellow), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--green); }
+  .b-8  { box-shadow: inset 0 0 0 3px var(--orange), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--blue); }
+  .b-9  { box-shadow: inset 0 0 0 3px var(--orange), inset 0 0 0 5px #fff, inset 0 0 0 8px var(--green); }
+  .b-10 { box-shadow: inset 0 0 0 3px var(--blue),   inset 0 0 0 5px #fff, inset 0 0 0 8px var(--green); }
+
+  .cover-text {
+    display: flex; flex-direction: column;
+    gap: 18px;
+    padding-right: 220px;
+    height: 100%;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 11px; background: var(--pink-soft); color: var(--pink-deep);
+    border-radius: 9px; font-size: 10px; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .pill.orange { background: var(--orange-soft); color: var(--orange-deep); }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  h1 { font-size: 38px; font-weight: 900; line-height: 1.02; letter-spacing: -1px; color: var(--ink); }
+  h1 em { color: var(--pink); font-style: normal; }
+  .subhead { font-size: 15px; color: var(--soft); line-height: 1.55; }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 8px; margin-top: auto;
+  }
+  .stat {
+    background: #fff; border-radius: 9px;
+    padding: 12px 12px 10px;
+    box-shadow: 0 0 0 2px var(--pink) inset;
+  }
+  .stat .n { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; line-height: 1; color: var(--ink); }
+  .stat .l { font-size: 9px; font-weight: 800; color: var(--soft); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 5px; display: block; }
+  .stat.s2 { box-shadow: 0 0 0 2px var(--orange) inset; }
+  .stat.s3 { box-shadow: 0 0 0 2px var(--yellow) inset; }
+
+  /* ===== Stamp (straight, with team avatar + lab logo) ===== */
+  .stamp-block {
+    position: absolute; top: 56px; right: 60px;
+    width: 170px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .stamp {
+    position: relative;
+    width: 150px;
+    background:
+      linear-gradient(180deg, var(--yellow-soft) 0 42%, #fff 42% 72%, var(--pink-soft) 72% 100%);
+    border-radius: 10px;
+    padding: 22px 18px 20px;
+    box-shadow:
+      inset 0 0 0 3px var(--yellow),
+      inset 0 0 0 5px #fff,
+      inset 0 0 0 8px var(--pink),
+      0 10px 20px rgba(0,0,0,0.16);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .stamp .team-avatar {
+    width: 56px; height: 56px;
+    background: #fff;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; line-height: 1;
+    box-shadow:
+      inset 0 0 0 2px var(--yellow),
+      0 0 0 2px #fff,
+      0 0 0 4px var(--pink),
+      0 0 0 6px #fff,
+      0 0 0 8px var(--blue);
+  }
+  .stamp .s-logo {
+    width: 96px;
+    display: block;
+    margin-top: 6px;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+  }
+  /* Round cancellation postmark, BELOW the stamp (no overlap) */
+  .postmark {
+    position: absolute; top: 175px; left: 30px;
+    width: 110px; height: 110px;
+    border: 3.5px solid var(--orange-deep);
+    border-radius: 50%;
+    transform: rotate(-8deg);
+    opacity: 0.9;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent;
+  }
+  .postmark::before {
+    content: '';
+    position: absolute; inset: 6px;
+    border: 2px solid var(--orange-deep);
+    border-radius: 50%;
+    opacity: 0.9;
+  }
+  .postmark-text {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 900; font-size: 12px;
+    color: var(--orange-deep);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-align: center;
+    line-height: 1.25;
+  }
+  .postmark-text small {
+    display: block; font-size: 10px; opacity: 1; margin-top: 4px;
+    letter-spacing: 0.06em; font-weight: 800;
+  }
+  /* Waves trailing horizontally just below the postmark */
+  .postmark-waves {
+    position: absolute; top: 298px; left: -5px;
+    width: 170px; height: 16px;
+    opacity: 0.7;
+    transform: rotate(-4deg);
+  }
+
+  /* ===== Unfold control ===== */
+  .unfold-row {
+    margin-top: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .unfold-line { flex: 1; height: 2px; background: var(--pink); border-radius: 2px; opacity: 0.5; }
+  .unfold-btn {
+    appearance: none; border: none; cursor: pointer;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--pink-deep); background: var(--pink-soft);
+    padding: 12px 20px; border-radius: 10px;
+    display: inline-flex; align-items: center; gap: 10px;
+    box-shadow: 0 0 0 2px var(--pink) inset, 0 3px 0 var(--pink-deep);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .unfold-btn:hover { transform: translateY(-1px); box-shadow: 0 0 0 2px var(--pink) inset, 0 4px 0 var(--pink-deep); }
+  .unfold-btn:active { transform: translateY(2px); box-shadow: 0 0 0 2px var(--pink) inset, 0 1px 0 var(--pink-deep); }
+  .unfold-btn .arrow { display: inline-block; transition: transform 0.25s ease; font-size: 14px; }
+  .postcard.is-open .unfold-btn .arrow { transform: rotate(90deg); }
+
+  /* ===== Accordion fiches ===== */
+  .accordion { display: none; margin-top: 0; }
+  .postcard.is-open .accordion { display: block; margin-top: 24px; }
+
+  .fiche {
+    border-radius: 12px;
+    background: #fff;
+    margin-bottom: 18px;
+    overflow: hidden;
+    border: 2.5px solid var(--f-accent, var(--pink));
+    box-shadow:
+      0 10px 24px rgba(0,0,0,0.10),
+      0 2px 6px rgba(0,0,0,0.05);
+    transition: box-shadow 0.18s ease;
+  }
+  .fiche.is-open {
+    box-shadow:
+      0 22px 48px rgba(0,0,0,0.16),
+      0 4px 10px rgba(0,0,0,0.06);
+  }
+
+  .fiche-head {
+    display: grid;
+    grid-template-columns: 48px 110px 1fr auto;
+    align-items: center; gap: 16px;
+    padding: 14px 20px;
+    cursor: pointer;
+    background: #fff;
+  }
+  .fiche-num {
+    width: 40px; height: 40px; border-radius: 11px;
+    background: var(--f-accent, var(--pink));
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 16px;
+    box-shadow: 0 0 0 2px #fff inset, 0 0 0 3px var(--f-accent, var(--pink)) inset;
+  }
+  .fiche-when {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--f-accent-deep, var(--pink-deep));
+    line-height: 1.5;
+  }
+  .fiche-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 17px; line-height: 1.2;
+    color: var(--ink);
+  }
+  .fiche-toggle {
+    font-size: 14px; color: var(--soft);
+    display: inline-flex; align-items: center;
+    user-select: none;
+  }
+  .fiche-toggle .chev { display: inline-block; transition: transform 0.2s ease; }
+  .fiche.is-open .fiche-toggle .chev { transform: rotate(90deg); }
+  .fiche.is-open .fiche-toggle { color: var(--f-accent-deep, var(--pink-deep)); }
+
+  .fiche-body { display: none; }
+  .fiche.is-open .fiche-body { display: block; }
+
+  .fiche-content {
+    padding: 6px 20px 22px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 20px;
+  }
+  /* Photo stack: 1 main + 2 thumbs, uniform 5-color frame matching the postcard */
+  .photo-stack { display: flex; flex-direction: column; gap: 10px; }
+  .photo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .fiche-photo {
+    border-radius: 9px;
+    background-size: cover; background-position: center;
+    background-color: var(--f-accent-soft, var(--pink-soft));
+    position: relative;
+    box-shadow: inset 0 0 0 3px var(--f-accent, var(--pink));
+  }
+  .fiche-photo.main { height: 200px; }
+  .fiche-photo.thumb { height: 120px; }
+  .fiche-photo.no-photo {
+    display: flex; align-items: center; justify-content: center;
+    height: 220px;
+    background: var(--f-accent-soft, var(--pink-soft));
+    color: var(--f-accent-deep, var(--pink-deep));
+    font-family: 'Patrick Hand', cursive;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-align: center; padding: 0 16px;
+  }
+
+  .fiche-right { display: flex; flex-direction: column; gap: 12px; }
+
+  .moment {
+    font-size: 14px; line-height: 1.55;
+    color: var(--ink);
+  }
+  .moment-label {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--f-accent-deep, var(--pink-deep)); margin-bottom: 6px;
+  }
+
+  .quote {
+    background: var(--f-accent-soft, var(--pink-soft));
+    border-radius: 9px;
+    padding: 14px 18px 12px 26px;
+    font-family: 'Caveat', cursive;
+    font-size: 20px; line-height: 1.25;
+    color: var(--ink);
+    position: relative;
+  }
+  .quote::before {
+    content: '"'; position: absolute; top: -2px; left: 10px;
+    font-size: 38px; font-family: 'Bricolage Grotesque', sans-serif;
+    color: var(--f-accent, var(--pink)); opacity: 0.5; line-height: 1;
+  }
+  .quote-by {
+    display: block; margin-top: 6px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 10px; font-weight: 700; color: var(--f-accent-deep, var(--pink-deep));
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .info-block.mood-block {
+    background: var(--f-accent-soft, var(--pink-soft));
+    box-shadow: none;
+  }
+  .info-block.mood-block .info-key {
+    color: var(--f-accent-deep, var(--pink-deep));
+  }
+
+  .keep {
+    background: var(--green-soft);
+    border-radius: 9px;
+    padding: 12px 16px;
+    font-size: 13.5px; line-height: 1.5; color: var(--green-deep);
+    font-weight: 600;
+  }
+  .keep-label {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--green-deep); margin-bottom: 4px;
+  }
+
+  .info-row {
+    display: grid; grid-template-columns: 3fr 2fr 5fr; gap: 8px;
+  }
+  .info-block {
+    background: #fff; border-radius: 9px;
+    padding: 10px 13px;
+    box-shadow: 0 0 0 1.5px rgba(0,0,0,0.06) inset;
+  }
+  .info-block.full { grid-column: 1 / -1; }
+  .info-key {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--soft); margin-bottom: 3px; display: block;
+  }
+  .info-val { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+  .info-meta { font-size: 11px; color: var(--soft); margin-top: 2px; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+  .tag {
+    background: var(--f-accent-soft, var(--pink-soft));
+    color: var(--f-accent-deep, var(--pink-deep));
+    padding: 3px 9px; border-radius: 6px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+  }
+
+  .status-chip {
+    display: inline-block;
+    padding: 2px 7px; border-radius: 5px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 8px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-top: 3px;
+  }
+  .status-chip.done { background: var(--green-soft); color: var(--green-deep); }
+
+  /* ===== Past timeline (closed view only) ===== */
+  .past-wrap {
+    margin-top: 24px;
+    padding: 18px 22px 20px;
+    background: #fff;
+    border-radius: 11px;
+    box-shadow: 0 0 0 2px var(--green) inset, 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .postcard.is-open .past-wrap { display: none; }
+  .past-wrap .timeline-head h3 { color: var(--ink); }
+  .past-wrap .timeline-head .label {
+    color: var(--green-deep); background: var(--green-soft);
+  }
+  .timeline-past {
+    position: relative;
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    padding: 16px 4px 0;
+  }
+  .timeline-past::before {
+    content: '';
+    position: absolute; top: 26px; left: 4%; right: 4%;
+    height: 2.5px;
+    background: repeating-linear-gradient(to right, var(--green) 0 8px, transparent 8px 14px);
+    z-index: 0;
+  }
+  .timeline-past .t-step {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    padding: 0 4px;
+  }
+  .timeline-past .t-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--green);
+    margin-bottom: 12px;
+  }
+  .timeline-past .t-when {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--green-deep);
+    margin-bottom: 5px;
+  }
+  .timeline-past .t-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 13px; line-height: 1.2;
+    color: var(--ink);
+  }
+
+  /* ===== Timeline for upcoming ===== */
+  .timeline-wrap {
+    margin-top: 28px;
+    padding: 22px 24px 24px;
+    background: #fff;
+    border-radius: 11px;
+    box-shadow: 0 0 0 2px var(--yellow) inset, 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .timeline-head {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .timeline-head h3 {
+    font-size: 16px; font-weight: 800; letter-spacing: -0.3px; color: var(--ink);
+  }
+  .timeline-head .label {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--yellow-deep);
+    background: var(--yellow-soft);
+    padding: 3px 9px; border-radius: 6px;
+  }
+  .timeline {
+    position: relative;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 18px 8px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; top: 28px; left: 8%; right: 8%;
+    height: 2.5px;
+    background: repeating-linear-gradient(to right, var(--yellow) 0 8px, transparent 8px 14px);
+    z-index: 0;
+  }
+  .t-step {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    padding: 0 12px;
+  }
+  .t-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 0 2.5px var(--yellow), 0 0 0 5px #fff;
+    margin-bottom: 12px;
+    position: relative; z-index: 2;
+  }
+  .t-step.tomorrow .t-dot { box-shadow: 0 0 0 2.5px var(--orange), 0 0 0 5px #fff; }
+  .t-when {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--yellow-deep);
+    margin-bottom: 6px;
+  }
+  .t-step.tomorrow .t-when { color: var(--orange-deep); }
+  .t-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 15px; line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .t-intent {
+    font-size: 12.5px; color: var(--soft); line-height: 1.45;
+    max-width: 380px;
+  }
+
+  .accent-pink { --f-accent: var(--pink); --f-accent-deep: var(--pink-deep); --f-accent-soft: var(--pink-soft); }
+  .accent-orange { --f-accent: var(--orange); --f-accent-deep: var(--orange-deep); --f-accent-soft: var(--orange-soft); }
+  .accent-yellow { --f-accent: var(--yellow); --f-accent-deep: var(--yellow-deep); --f-accent-soft: var(--yellow-soft); }
+  .accent-green { --f-accent: var(--green); --f-accent-deep: var(--green-deep); --f-accent-soft: var(--green-soft); }
+  .accent-blue { --f-accent: var(--blue); --f-accent-deep: var(--blue-deep); --f-accent-soft: var(--blue-soft); }
+
+</style>
+</head>
+<body>
+
+<main>
+<article class="postcard" id="postcard">
+  <div class="corner-fold"></div>
+  <div class="stamp-block">
+    <svg class="postmark-waves" viewBox="0 0 200 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 0 6 Q 15 -3, 30 6 T 60 6 T 90 6 T 120 6 T 150 6 T 180 6 T 200 6" fill="none" stroke="#c95816" stroke-width="2.6"/>
+      <path d="M 0 14 Q 15 5, 30 14 T 60 14 T 90 14 T 120 14 T 150 14 T 180 14 T 200 14" fill="none" stroke="#c95816" stroke-width="2.6"/>
+    </svg>
+    <div class="postmark">
+      <div class="postmark-text">
+        La<br>Rochelle<br><small>18/06/2026</small>
+      </div>
+    </div>
+    <div class="stamp">
+      <div class="team-avatar">👾</div>
+      <img src="logo.png" alt="L.A.B. logo" class="s-logo">
+    </div>
+  </div>
+
+  <div class="pc-inner">
+
+    <!-- RECTO at postcard ratio 2138:1538 -->
+    <section class="recto">
+      <div class="cover-image b-1"></div>
+      <div class="cover-text">
+        <div class="pill-row">
+          <span class="pill">Pacman's · France</span>
+          <span class="pill orange">Dec 2025 → Jun 2026</span>
+        </div>
+        <h1>From Pacman's to the <em>Youth AI Lab</em> · creativity included.</h1>
+        <p class="subhead">Six workshops from December to May: generative AI, reinforcement learning, a three-part "Stupid Invention" challenge, and a full-day immersion at the French Robotics Cup, with our Pacman's crew of 12 to 15 year olds.</p>
+        <div class="stats">
+          <div class="stat"><span class="n">6</span><span class="l">Sessions</span></div>
+          <div class="stat s2"><span class="n">21h30</span><span class="l">In the lab</span></div>
+          <div class="stat s3"><span class="n">17</span><span class="l">Researchers</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAST TIMELINE (closed view only) -->
+    <div class="past-wrap">
+      <div class="timeline-head">
+        <h3>Workshops done</h3>
+        <span class="label">Six sessions in the Local Ouest</span>
+      </div>
+      <div class="timeline-past">
+        <div class="t-step">
+          <div class="t-dot"></div>
+          <div class="t-when">Dec 2025</div>
+          <div class="t-title">Inside the Machine.</div>
+        </div>
+        <div class="t-step">
+          <div class="t-dot"></div>
+          <div class="t-when">Jan 2026</div>
+          <div class="t-title">Reinforcing AI.</div>
+        </div>
+        <div class="t-step">
+          <div class="t-dot"></div>
+          <div class="t-when">Mar 2026</div>
+          <div class="t-title">The Stupid Invention.</div>
+        </div>
+        <div class="t-step">
+          <div class="t-dot"></div>
+          <div class="t-when">Apr 2026</div>
+          <div class="t-title">Pitching to investors.</div>
+        </div>
+        <div class="t-step">
+          <div class="t-dot"></div>
+          <div class="t-when">Apr 2026</div>
+          <div class="t-title">The public pitch.</div>
+        </div>
+        <div class="t-step">
+          <div class="t-dot"></div>
+          <div class="t-when">May 2026</div>
+          <div class="t-title">French Robotics Cup.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNFOLD -->
+    <div class="unfold-row">
+      <span class="unfold-line"></span>
+      <button class="unfold-btn" id="unfoldBtn" type="button">
+        <span class="unfold-label">Unfold the journey</span> <span class="arrow">▸</span>
+      </button>
+      <span class="unfold-line"></span>
+    </div>
+
+    <!-- ACCORDION (only sessions done) -->
+    <div class="accordion" id="accordion">
+
+      <div class="fiche accent-pink is-open">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">01</div>
+          <div class="fiche-when">Dec 2025<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">Inside the Machine · Rule Finder, Word Predictor, Storyteller.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-01.png');"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-01-b.png');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-01-c.png');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                A first hands-on encounter with generative AI. Three short activities, each played twice: once by the youth themselves, once by a generative AI solution. A guessing game with seventy-two image cards to feel out pattern recognition. A word-by-word prediction game played by hand to show how AI text actually works. A short collaborative story to see how the AI reuses context. The point was to compare, side by side, how humans and machines tackle the same task.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">AI Lab, Inside the Machine</div>
+                  <div class="info-meta">Rule Finder, Word Predictor, Storyteller · 2h30</div>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">6 researchers</div>
+                  <div class="info-meta">12 to 15 yo</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Curious and engaging. Lots of laughter when they caught the AI making things up.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skill tree</span>
+                  <div class="tag-row">
+                    <span class="tag">pattern recognition</span>
+                    <span class="tag">prompting</span>
+                    <span class="tag">critical thinking</span>
+                    <span class="tag">data literacy</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                At twelve to fifteen, the youth engage much faster when they play the activity first and meet the AI after. Doing the task themselves gives them something to compare against, and the AI stops feeling like magic.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fiche accent-blue">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">02</div>
+          <div class="fiche-when">Jan 2026<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">Reinforcement Learning · unplugged to plugged.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-02.png');"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-02-b.png');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-02-c.png');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                Three hours to figure out how a machine actually learns. First half unplugged: a six-by-six coloured grid laid on the floor became a maze with hidden traps and a hidden goal. The group played the learning agent, one square at a time, earning reward tokens when they moved well and losing the lot when they hit a trap. Each youth filled a blank sheet to invent their own way of mapping safe and trapped squares. Second half on real robots (Sphero Indi, Vinci Bot, Tale Bot), programmed through navigation and creative missions, with the objective of reproducing the safest route to the hidden goal.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">Reinforce Your Learning</div>
+                  <div class="info-meta">Bio-inspired, unplugged-to-plugged · 3h</div>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">10 in the lab</div>
+                  <div class="info-meta">12 to 15 yo</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Loud and hands-on. The creative missions inspired and engaged youth. The robots turned into a quiet competition between the groups.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skill tree</span>
+                  <div class="tag-row">
+                    <span class="tag">reinforcement learning</span>
+                    <span class="tag">robotics</span>
+                    <span class="tag">bio-inspired</span>
+                    <span class="tag">debugging</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                At this age, each youth invents their own way of mapping the maze: some go systematic from the start, others lean on memory, some draw pictures. Giving them a blank sheet for memorising their learning model is what lets those personal strategies appear, and then feed the collective discussion.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fiche accent-orange">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">03</div>
+          <div class="fiche-when">Mar 2026<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">The Stupid Invention, part 1 · ideation.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-03.jpeg');"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-03-b.jpg');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-03-c.png');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                The session opened with a quiz: a slideshow of unusual products, real or AI-generated. The youth guessed which was real or faked and discussed what gave each one away. They then paired up to design a deliberately useless product, filling a short ideation sheet with the problem, the product idea, a name, a quick explanation and a sketch. The AI was on hand as a co-creator, especially to push the idea further or expand the description.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">The Stupid Invention, part one</div>
+                  <div class="info-meta">Creating the product with AI co-pilot · 2h30</div>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">6 inventors</div>
+                  <div class="info-meta">12 to 15 yo</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Playful and focused. The absurd brief lifted the pressure to be right, and they kept iterating until their idea made them laugh.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skill tree</span>
+                  <div class="tag-row">
+                    <span class="tag">prompting</span>
+                    <span class="tag">creativity</span>
+                    <span class="tag">hallucination spotting</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                A deliberately silly brief takes the pressure to be right off the youth. At twelve to fifteen, they feel free to experiment, push the AI further, and end up running many more iterations than they would on a serious topic.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fiche accent-yellow">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">04</div>
+          <div class="fiche-when">Apr 2026<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">The Stupid Invention, part 2 · building the fake.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-04.jpeg');"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-04-b.png');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-04-c.png');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                The session opened with the facilitator showing a fake but very convincing-looking product: real or AI? The brief for the rest of the day was clear: take the absurd invention from the previous session and build everything you would need to sell it, from text and visuals to a physical prototype, credible enough that an outside reader could be fooled.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">The Stupid Invention, part two</div>
+                  <div class="info-meta">Convincing investors · 2h30</div>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">8 pitchers</div>
+                  <div class="info-meta">12 to 15 yo</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Concentrated, a bit conspiratorial. They got into the persuasion game and helped each other sharpen the fake.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skill tree</span>
+                  <div class="tag-row">
+                    <span class="tag">fact-checking</span>
+                    <span class="tag">argumentation</span>
+                    <span class="tag">prompt iteration</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                Asking the youth to build the fake themselves, rather than just spot one, is what makes the lesson stick. At this age they notice the manipulation techniques much better when they have to use them.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fiche accent-green">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">05</div>
+          <div class="fiche-when">Apr 2026<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">The Stupid Invention, part 3 · final pitch.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-05.jpg'); background-position: center 30%;"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-05-b.jpeg');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-05-c.jpg');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                The session opened with the youth themselves recapping the project to each other. Roles were then split: one focused on the cardboard prototype, the others on the investor slideshow. The evening ended with a full pitch in front of a jury, and a Q&A where the youth had to make clear which parts of their pitch were their own work and which came from the AI.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">The Stupid Invention, part three</div>
+                  <div class="info-meta">The public pitch · 3h</div>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">4 finalists</div>
+                  <div class="info-meta">12 to 15 yo</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Nervous before, proud after. The Q&A turned into a defence of their own choices.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skill tree</span>
+                  <div class="tag-row">
+                    <span class="tag">public speaking</span>
+                    <span class="tag">authorship</span>
+                    <span class="tag">AI awareness</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                Letting the returning youth recap the project in their own words gives them ownership of the work and surfaces what really stuck for them from the previous session. New youth joining mid-sequence settle in much faster when their peers explain the project than when a facilitator does.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fiche accent-pink">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">06</div>
+          <div class="fiche-when">May 2026<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">Coupe de France de Robotique · full day immersion.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-06.png');"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-06-b.png');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-06-c.png');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                A full day at the Coupe de France de Robotique, the French national robotics competition held in La Roche-sur-Yon. The youth were able to discover robotics projects built by young makers, and to watch the matches, especially the junior finale. They also participated in two hands-on workshops with the association Planète Sciences Vendée: building a small "insect" robot from wire, a battery and a motor, then designing a keychain with a 3D pen.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">French Robotics Cup, finale</div>
+                  <div class="info-meta">Off-site immersion · 8h</div>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">6 on the road</div>
+                  <div class="info-meta">12 to 15 yo</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Wide-eyed. They came back fired up, already talking about coming next year as competitors rather than spectators.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skill tree</span>
+                  <div class="tag-row">
+                    <span class="tag">systems thinking</span>
+                    <span class="tag">field observation</span>
+                    <span class="tag">failure analysis</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                Seeing competitors their own age, sometimes younger, changed what the youth thought they could do themselves. They can picture themselves in a year from now, participating in the next round of the competition with their own robot.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== TIMELINE for upcoming ===== -->
+      <div class="timeline-wrap">
+        <div class="timeline-head">
+          <h3>Still to come</h3>
+          <span class="label">Next two stops</span>
+        </div>
+        <div class="timeline">
+          <div class="t-step">
+            <div class="t-dot"></div>
+            <div class="t-when">June 2026</div>
+            <div class="t-title">Catching AI in its biases.</div>
+            <div class="t-intent">An afternoon on bias in large language models. The youth will probe a model to find where it leaves people out, then propose ways to make its answers more representative.</div>
+          </div>
+          <div class="t-step tomorrow">
+            <div class="t-dot"></div>
+            <div class="t-when">July 2026 · intensive week</div>
+            <div class="t-title">Building WikiYouthBot on an SDG question.</div>
+            <div class="t-intent">A full week tied to one Sustainable Development Goal question. The youth will build a small local dataset, write chatbot's brief, and ship a specialised chatbot they can defend in front of an outside audience.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</article>
+</main>
+
+<script>
+  // Fit the postcard to any screen while keeping its layout identical.
+  // The card is internally 1440×800 (closed); we shrink it with `zoom`
+  // when the viewport is narrower than that, never enlarge beyond 1.
+  function fitPostcard() {
+    const cardW = 1440;
+    const cardH = 800;
+    const hMargin = 40;
+    const vMargin = 40;
+    const availW = window.innerWidth - hMargin * 2;
+    const availH = window.innerHeight - vMargin * 2;
+    const scale = Math.min(1, availW / cardW, availH / cardH);
+    document.documentElement.style.setProperty('--pc-scale', String(scale));
+  }
+  fitPostcard();
+  window.addEventListener('resize', fitPostcard);
+
+  const postcard = document.getElementById('postcard');
+  const unfoldBtn = document.getElementById('unfoldBtn');
+  const labelEl = unfoldBtn.querySelector('.unfold-label');
+
+  unfoldBtn.addEventListener('click', () => {
+    postcard.classList.toggle('is-open');
+    labelEl.textContent = postcard.classList.contains('is-open') ? 'Fold back' : 'Unfold the journey';
+  });
+
+  function toggleFiche(headEl) {
+    const fiche = headEl.parentElement;
+    fiche.classList.toggle('is-open');
+  }
+</script>
+
+</body>
+</html>

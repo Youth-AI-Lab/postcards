@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Youth Ai Lab · Postcards from Pacman's</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&family=Patrick+Hand&display=swap');
+  :root {
+    --bg: #f7f4e8; --ink: #1a1a1a; --soft: #6c6c6c;
+    --pink: #fa89d2; --pink-deep: #d966ad; --pink-soft: #ffd9f2;
+    --orange: #f37030; --orange-deep: #c95816; --orange-soft: #ffd5c1;
+    --yellow: #f9c724; --yellow-deep: #c99c00;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background:
+      radial-gradient(ellipse at 20% 15%, var(--pink-soft) 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 70%, var(--orange-soft) 0%, transparent 45%),
+      var(--bg);
+    font-family: 'Manrope', system-ui, sans-serif; color: var(--ink); min-height: 100%;
+  }
+  h1, h2, .eyebrow { font-family: 'Bricolage Grotesque', sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 70px 32px 80px; }
+  .breadcrumb { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; color: var(--soft); margin-bottom: 32px; }
+  .breadcrumb a { color: var(--soft); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--ink); }
+  .breadcrumb .sep { opacity: 0.4; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 16px; background: var(--pink-soft); color: var(--pink-deep);
+    border-radius: 14px; font-size: 12px; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px;
+  }
+  h1 { font-size: 60px; font-weight: 900; line-height: 1; letter-spacing: -2px; margin-bottom: 16px; }
+  h1 em { color: var(--pink); font-style: normal; }
+  .lead { font-size: 17px; color: var(--soft); line-height: 1.6; max-width: 720px; margin-bottom: 56px; }
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+  }
+  .pc-card {
+    display: block; text-decoration: none; color: var(--ink);
+    aspect-ratio: 5 / 3;
+    border-radius: 14px;
+    position: relative; overflow: hidden;
+    background-color: #2a2a2a;
+    background-image: url('pacmans-postcard-01/hero.png');
+    background-size: cover; background-position: center;
+    box-shadow: 0 0 0 4px #fff inset, 0 0 0 7px var(--pink) inset, 0 0 0 10px #fff inset, 0 0 0 13px var(--orange) inset, 0 14px 32px rgba(0,0,0,0.14);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .pc-card:hover { transform: translateY(-3px); box-shadow: 0 0 0 4px #fff inset, 0 0 0 7px var(--pink) inset, 0 0 0 10px #fff inset, 0 0 0 13px var(--orange) inset, 0 22px 42px rgba(0,0,0,0.22); }
+  .pc-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 50%, transparent 65%);
+  }
+  .pc-meta {
+    position: absolute; top: 22px; left: 26px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 11px; font-weight: 800; color: #fff;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: rgba(0,0,0,0.4); padding: 6px 12px; border-radius: 8px;
+    backdrop-filter: blur(6px);
+  }
+  .pc-stamp {
+    position: absolute; top: 22px; right: 26px;
+    background: #fff; color: var(--orange-deep);
+    border: 2px solid var(--orange);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 10px; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    transform: rotate(6deg);
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--yellow);
+  }
+  .pc-title {
+    position: absolute; bottom: 68px; left: 26px; right: 26px;
+    color: #fff;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 26px;
+    line-height: 1.1; letter-spacing: -0.5px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+  .pc-foot {
+    position: absolute; bottom: 22px; left: 26px; right: 26px;
+    color: rgba(255,255,255,0.92);
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pc-foot .dot { opacity: 0.5; }
+  .pc-foot .chev {
+    margin-left: auto;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  footer {
+    margin-top: 80px; padding-top: 36px;
+    color: var(--soft); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute; top: 12px; left: 0; right: 24px;
+    height: 2.5px; background: var(--pink); border-radius: 2px; opacity: 0.7;
+  }
+  footer::after {
+    content: '';
+    position: absolute; top: 4px; right: 0;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--pink); box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  footer a { color: inherit; text-decoration: underline; }
+  @media (max-width: 600px) {
+    h1 { font-size: 44px; }
+    .pc-title { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="breadcrumb">
+    <a href="../../SuccessStories/">Youth Ai Lab</a>
+    <span class="sep">·</span>
+    <a href="../">Postcards</a>
+    <span class="sep">·</span>
+    <span>Pacman's</span>
+  </div>
+
+  <span class="eyebrow">Pacman's · France</span>
+  <h1>Postcards from <em>Pacman's.</em></h1>
+  <p class="lead">
+    One postcard per period, folded as an accordion. Open it to walk through every session the lab ran with the youth, with the moment, the voice, the skill tree and what the team keeps from each stop.
+  </p>
+
+  <div class="grid">
+    <a class="pc-card" href="pacmans-postcard-01/">
+      <span class="pc-meta">December 2025 → July 2026</span>
+      <span class="pc-stamp">Postcard 01</span>
+      <span class="pc-title">A year folded into a postcard.</span>
+      <span class="pc-foot">
+        8 sessions <span class="dot">·</span> 26h in the lab
+        <span class="chev">Unfold ▸</span>
+      </span>
+    </a>
+  </div>
+
+  <footer>
+    <a href="../">← All postcards</a>
+    &nbsp;·&nbsp;
+    <a href="https://youth-ai-lab.eu/">youth-ai-lab.eu</a>
+  </footer>
+</main>
+
+</body>
+</html>
