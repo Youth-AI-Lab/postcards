@@ -90,7 +90,7 @@ A first hands-on encounter with generative AI. Three short activities, each play
 **Mood:**
 Curious and engaging. Lots of laughter when they caught the AI making things up.
 
-**Skill tree:** pattern recognition · prompting · critical thinking · data literacy
+**Skills:** pattern recognition · prompting · critical thinking · data literacy
 
 **Best practice:**
 At twelve to fifteen, the youth engage much faster when they play the activity first and meet the AI after. Doing the task themselves gives them something to compare against, and the AI stops feeling like magic.
@@ -115,7 +115,7 @@ Three hours to figure out how a machine actually learns. First half unplugged: a
 **Mood:**
 Loud and hands-on. The creative missions inspired and engaged youth. The robots turned into a quiet competition between the groups.
 
-**Skill tree:** reinforcement learning · robotics · bio-inspired · debugging
+**Skills:** reinforcement learning · robotics · bio-inspired · debugging
 
 **Best practice:**
 At this age, each youth invents their own way of mapping the maze: some go systematic from the start, others lean on memory, some draw pictures. Giving them a blank sheet for memorising their learning model is what lets those personal strategies appear, and then feed the collective discussion.
@@ -140,7 +140,7 @@ The session opened with a quiz: a slideshow of unusual products, real or AI-gene
 **Mood:**
 Playful and focused. The absurd brief lifted the pressure to be right, and they kept iterating until their idea made them laugh.
 
-**Skill tree:** prompting · creativity · hallucination spotting
+**Skills:** prompting · creativity · hallucination spotting
 
 **Best practice:**
 A deliberately silly brief takes the pressure to be right off the youth. At twelve to fifteen, they feel free to experiment, push the AI further, and end up running many more iterations than they would on a serious topic.
@@ -165,7 +165,7 @@ The session opened with the facilitator showing a fake but very convincing-looki
 **Mood:**
 Concentrated, a bit conspiratorial. They got into the persuasion game and helped each other sharpen the fake.
 
-**Skill tree:** fact-checking · argumentation · prompt iteration
+**Skills:** fact-checking · argumentation · prompt iteration
 
 **Best practice:**
 Asking the youth to build the fake themselves, rather than just spot one, is what makes the lesson stick. At this age they notice the manipulation techniques much better when they have to use them.
@@ -190,7 +190,7 @@ The session opened with the youth themselves recapping the project to each other
 **Mood:**
 Nervous before, proud after. The Q&A turned into a defence of their own choices.
 
-**Skill tree:** public speaking · authorship · AI awareness
+**Skills:** public speaking · authorship · AI awareness
 
 **Best practice:**
 Letting the returning youth recap the project in their own words gives them ownership of the work and surfaces what really stuck for them from the previous session. New youth joining mid-sequence settle in much faster when their peers explain the project than when a facilitator does.
@@ -215,7 +215,7 @@ A full day at the Coupe de France de Robotique, the French national robotics com
 **Mood:**
 Wide-eyed. They came back fired up, already talking about coming next year as competitors rather than spectators.
 
-**Skill tree:** systems thinking · field observation · failure analysis
+**Skills:** systems thinking · field observation · failure analysis
 
 **Best practice:**
 Seeing competitors their own age, sometimes younger, changed what the youth thought they could do themselves. They can picture themselves in a year from now, participating in the next round of the competition with their own robot.
@@ -243,7 +243,7 @@ A full week tied to one Sustainable Development Goal question. The youth will bu
 
 - No em dashes (use `·` middle dots or commas/colons).
 - No captions on photos.
-- 6 fiches, each with: title, **What we ran** moment, Activity / Who / Mood triptych (30 / 20 / 50 %), Skill tree, Best practice.
+- 6 fiches, each with: title, **What we ran** moment, Activity / Who / Mood triptych (30 / 20 / 50 %), Skills, Best practice.
 - The Best practice is meant to be about **the youth at twelve to fifteen**, not the tech or logistics.
 - Targets a general public audience: keep enough context that someone outside the project understands what happened.
 - All content describes what was done BEFORE 18 June 2026 (the La Rochelle posting date). Future workshops live in the timeline.

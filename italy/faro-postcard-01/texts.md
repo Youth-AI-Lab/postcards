@@ -88,7 +88,7 @@ A first session to set the baseline. The youth began by sharing what they though
 **Mood:**
 Curious and competitive. The groups debated intensely about whether each example truly qualified as AI.
 
-**Skill tree:** AI literacy · observation · digital citizenship · categorisation
+**Skills:** AI literacy · observation · digital citizenship · categorisation
 
 **Best practice:**
 At fourteen to seventeen, young people arrive with strong but mixed intuitions about AI. Starting from their own examples, then sorting them together, is what makes the boundary between automation and intelligence stick for good.
@@ -113,7 +113,7 @@ Four steps to crack open what is really happening inside an AI. The youth starte
 **Mood:**
 Engaged and serious. The paper was dense; the group followed it more closely than the facilitators expected.
 
-**Skill tree:** LLM literacy · reinforcement learning · robotics · SDGs · system design
+**Skills:** LLM literacy · reinforcement learning · robotics · SDGs · system design
 
 **Best practice:**
 Pair an abstract concept (LLM limits, reinforcement learning) with a concrete handle (a real robot, a recent paper, an SDG). At fourteen to seventeen, young people need both ends of the bridge in the same session for the concept to land.
@@ -138,7 +138,7 @@ An afternoon on bias. The youth first explored Sustainable Development Goal 5 (g
 **Mood:**
 Sharp and a bit indignant. They caught the AI making lazy assumptions, and called them out by name.
 
-**Skill tree:** bias detection · prompt design · data literacy · SDG 5 · classification
+**Skills:** bias detection · prompt design · data literacy · SDG 5 · classification
 
 **Best practice:**
 Show bias both as a social fact (laws, gaps) and as a technical fact (training data, classification boundaries). At fourteen to seventeen, the two read very differently, but young people start connecting them once both are on the table in the same session.
@@ -163,7 +163,7 @@ Three steps to turn Sustainable Development Goal 11 into something concrete. The
 **Mood:**
 Engaged and a bit indignant. The City Audit hit close to home, then the live sensor readings switched them straight into engineering mode.
 
-**Skill tree:** SDG 11 · sensors · urban analysis · neural network · confusion matrix · data literacy
+**Skills:** SDG 11 · sensors · urban analysis · neural network · confusion matrix · data literacy
 
 **Best practice:**
 Anchor an abstract Sustainable Development Goal in their own street. At fourteen to seventeen, young people take an SDG much more seriously once they have audited their own commute against it.
