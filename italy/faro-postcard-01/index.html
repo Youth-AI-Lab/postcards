@@ -300,8 +300,8 @@
     gap: 20px;
   }
   /* Photo stack: 1 main + 2 thumbs, uniform 5-color frame matching the postcard */
-  .photo-stack { display: flex; flex-direction: column; gap: 10px; }
-  .photo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .photo-stack { display: flex; flex-direction: column; gap: 10px; height: 100%; }
+  .photo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex-shrink: 0; }
 
   .fiche-photo {
     border-radius: 9px;
@@ -310,7 +310,7 @@
     position: relative;
     box-shadow: inset 0 0 0 3px var(--f-accent, var(--pink));
   }
-  .fiche-photo.main { height: 200px; }
+  .fiche-photo.main { flex: 1 1 200px; min-height: 200px; }
   .fiche-photo.thumb { height: 120px; }
   .fiche-photo.no-photo {
     display: flex; align-items: center; justify-content: center;
@@ -395,6 +395,20 @@
   }
   .info-val { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.35; }
   .info-meta { font-size: 11px; color: var(--soft); margin-top: 2px; }
+
+  .t-sheet {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 8px;
+    padding: 4px 11px;
+    border-radius: 20px;
+    background: var(--f-accent-soft, var(--pink-soft));
+    color: var(--f-accent-deep, var(--pink-deep));
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 10px; font-weight: 800;
+    letter-spacing: 0.04em; text-decoration: none;
+    transition: transform 0.12s ease;
+  }
+  .t-sheet:hover { transform: translateY(-1px); }
 
   .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
   .tag {
@@ -659,7 +673,7 @@
     <!-- ACCORDION (only sessions done) -->
     <div class="accordion" id="accordion">
 
-      <div class="fiche accent-pink is-open">
+      <div class="fiche accent-pink">
         <div class="fiche-head" onclick="toggleFiche(this)">
           <div class="fiche-num">01</div>
           <div class="fiche-when">Feb 2026<br><span class="status-chip done">Done</span></div>
@@ -684,7 +698,7 @@
                 <div class="info-block">
                   <span class="info-key">Activity</span>
                   <div class="info-val">Keep an Eye on AI, phase one</div>
-                  <div class="info-meta">PPT, observation sheets, group detectives · 2h30</div>
+                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_KeepEyeAI.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
@@ -739,7 +753,7 @@
                 <div class="info-block">
                   <span class="info-key">Activity</span>
                   <div class="info-val">Illusion is all that matters</div>
-                  <div class="info-meta">LLM paper, Otto robot, SDG mapping, RL analogy · 2h30</div>
+                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_Illusions.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
@@ -795,7 +809,7 @@
                 <div class="info-block">
                   <span class="info-key">Activity</span>
                   <div class="info-val">BIAS, Genre Matters</div>
-                  <div class="info-meta">SDG 5, LLM probing, binary classifier · 2h30</div>
+                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_BIAIS.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
@@ -845,7 +859,7 @@
                 <div class="info-block">
                   <span class="info-key">Activity</span>
                   <div class="info-val">Make Cities Great Again</div>
-                  <div class="info-meta">Urban Blueprint, sensor array, scenario challenge · 2h30</div>
+                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_CitiesGreat.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
