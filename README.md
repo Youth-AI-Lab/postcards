@@ -10,6 +10,7 @@ Production URL: <https://youth-ai-lab.github.io/postcards/>
 postcards/
 ├── README.md
 ├── index.html                       Global postcards landing
+├── cornicello.svg                   Lucky-charm icon shared by the pages
 ├── france/
 │   ├── index.html                   Pacman's landing
 │   └── pacmans-postcard-01/         The folded postcard
@@ -53,7 +54,7 @@ The lab logos and the YAL banner live in `Youth-AI-Lab/success-stories/CommonVis
 ## Local preview
 
 ```bash
-cd /path/to/YouthAiLab        # parent of Postcards/ and SuccessStories/
+cd /path/to/YouthAiLab/Publie   # parent of Postcards/ and SuccessStories/
 python3 -m http.server 8765
 # open http://localhost:8765/Postcards/
 ```
