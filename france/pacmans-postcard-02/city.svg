@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" fill="none"
+     stroke="#1a1a1a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- La Rochelle, the harbour entrance: Tour de la Chaine, Tour Saint-Nicolas,
+       Tour de la Lanterne. Stylised monoline drawing, not a photograph. -->
+
+  <!-- Tour de la Lanterne, the tall spired one, left -->
+  <path d="M232 300 V150 h64 V300"/>
+  <path d="M232 150 264 78 296 150"/>
+  <path d="M264 78 V54"/>
+  <path d="M240 176 h48 M240 202 h48"/>
+  <path d="M258 240 a6 8 0 0 1 12 0 V262 h-12z"/>
+
+  <!-- Tour de la Chaine, squat and round, centre left -->
+  <path d="M470 300 V186 a44 30 0 0 1 88 0 V300"/>
+  <path d="M470 186 h88"/>
+  <path d="M470 170 v16 M492 164 v22 M514 162 v24 M536 164 v22 M558 170 v16"/>
+  <path d="M498 238 a8 10 0 0 1 16 0 V260 h-16z"/>
+  <path d="M528 238 a8 10 0 0 1 16 0 V260 h-16z"/>
+
+  <!-- the chain across the harbour mouth -->
+  <path d="M558 232 Q 668 268 778 232"/>
+
+  <!-- Tour Saint-Nicolas, the big keep, right -->
+  <path d="M778 300 V152 h124 V300"/>
+  <path d="M778 152 h124"/>
+  <path d="M778 134 v18 M804 128 v24 M830 126 v26 M856 126 v26 M882 128 v24 M902 134 v18"/>
+  <path d="M902 152 926 116 950 152 V300"/>
+  <path d="M926 116 V96"/>
+  <path d="M812 200 a9 11 0 0 1 18 0 V226 h-18z"/>
+  <path d="M850 200 a9 11 0 0 1 18 0 V226 h-18z"/>
+  <path d="M812 254 a9 11 0 0 1 18 0 V278 h-18z"/>
+  <path d="M850 254 a9 11 0 0 1 18 0 V278 h-18z"/>
+
+  <!-- quay and water -->
+  <path d="M120 300 H1080"/>
+  <path d="M180 332 q 40 -14 80 0 t 80 0 t 80 0 t 80 0"/>
+  <path d="M420 360 q 40 -14 80 0 t 80 0 t 80 0 t 80 0 t 80 0"/>
+  <path d="M240 388 q 40 -14 80 0 t 80 0 t 80 0"/>
+
+  <!-- a lone sail, because it is a harbour -->
+  <path d="M646 300 V196 l58 84 z"/>
+  <path d="M646 300 V196"/>
+</svg>

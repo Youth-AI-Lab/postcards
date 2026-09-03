@@ -50,6 +50,20 @@
       0 28px 70px rgba(0,0,0,0.16);
   }
 
+  /* Watermark of the sending city, drawn as a monoline SVG, printed into the card
+     paper. It scrolls with the card and sits under the content at whisper opacity. */
+  .postcard::before {
+    content: '';
+    position: absolute;
+    top: 96px; right: 3%;
+    width: 52%;
+    aspect-ratio: 1200 / 420;
+    background: url('city.svg') center / contain no-repeat;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .pc-inner { position: relative; z-index: 1; }
   .corner-fold { display: none; }
 
   .pc-inner {
@@ -665,8 +679,8 @@
             <div class="photo-stack">
               <div class="fiche-photo main" style="background-image: url('step-01.jpg');"></div>
               <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-01-b.jpg');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-01-c.jpg');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-01-b.png');"></div>
+                <div class="fiche-photo thumb no-photo">Photo to come</div>
               </div>
             </div>
             <div class="fiche-right">
@@ -721,7 +735,7 @@
               <div class="fiche-photo main" style="background-image: url('step-02.jpg');"></div>
               <div class="photo-row">
                 <div class="fiche-photo thumb" style="background-image: url('step-02-b.png');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-02-c.jpg');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-02-c.png');"></div>
               </div>
             </div>
             <div class="fiche-right">
@@ -828,10 +842,10 @@
         <div class="fiche-body">
           <div class="fiche-content">
             <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-04.jpg');"></div>
+              <div class="fiche-photo main" style="background-image: url('step-04.png');"></div>
               <div class="photo-row">
                 <div class="fiche-photo thumb" style="background-image: url('step-04-b.jpg');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-04-c.jpg');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-04-c.jpeg');"></div>
               </div>
             </div>
             <div class="fiche-right">
