@@ -43,7 +43,7 @@ Path: `SuccessStories/postcards/france/pacmans-postcard-01/index.html`
 | --- | --- |
 | 6 | Sessions |
 | 21h30 | In the lab |
-| 17 | Researchers |
+| 13 | Researchers |
 
 ---
 
@@ -84,7 +84,7 @@ A first hands-on encounter with generative AI. Three short activities, each play
 - Rule Finder, Word Predictor, Storyteller · 2h30
 
 **Who:**
-- 6 researchers
+- 4 researchers
 - 12 to 15 yo
 
 **Mood:**
@@ -109,7 +109,7 @@ Three hours to figure out how a machine actually learns. First half unplugged: a
 - Bio-inspired, unplugged-to-plugged · 3h
 
 **Who:**
-- 10 in the lab
+- 8 in the lab
 - 12 to 15 yo
 
 **Mood:**
@@ -134,7 +134,7 @@ The session opened with a quiz: a slideshow of unusual products, real or AI-gene
 - Creating the product with AI co-pilot · 2h30
 
 **Who:**
-- 6 inventors
+- 5 inventors
 - 12 to 15 yo
 
 **Mood:**
@@ -159,7 +159,7 @@ The session opened with the facilitator showing a fake but very convincing-looki
 - Convincing investors · 2h30
 
 **Who:**
-- 8 pitchers
+- 7 pitchers
 - 12 to 15 yo
 
 **Mood:**
@@ -184,7 +184,7 @@ The session opened with the youth themselves recapping the project to each other
 - The public pitch · 3h
 
 **Who:**
-- 4 finalists
+- 3 finalists
 - 12 to 15 yo
 
 **Mood:**
@@ -209,7 +209,7 @@ A full day at the Coupe de France de Robotique, the French national robotics com
 - Off-site immersion · 8h
 
 **Who:**
-- 6 on the road
+- 3 on the road
 - 12 to 15 yo
 
 **Mood:**
@@ -222,12 +222,11 @@ Seeing competitors their own age, sometimes younger, changed what the youth thou
 
 ---
 
-## Future timeline (visible when open)
+## Next investigations (visible when open)
 
 ### Header
 
-- Title: **Still to come**
-- Label: `Next two stops`
+- Title: **Next investigations**
 
 ### Steps
 

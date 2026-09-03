@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pacman's · A french postcard from the Local Ouest</title>
+<title>Digitale Wolven · A Belgian postcard from Digitale Wolven</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&family=Patrick+Hand&family=Caveat:wght@400;700&display=swap');
   :root {
@@ -39,9 +39,9 @@
     background: #ffffff;
     border-radius: 14px;
     box-shadow:
-      0 0 0 3px var(--pink) inset,
+      0 0 0 3px var(--green) inset,
       0 0 0 6px #fffdf6 inset,
-      0 0 0 8px var(--orange) inset,
+      0 0 0 8px var(--blue) inset,
       0 0 0 11px #fffdf6 inset,
       0 0 0 13px var(--yellow) inset,
       0 28px 70px rgba(0,0,0,0.16);
@@ -71,15 +71,33 @@
     height: 100%;
     position: relative;
     overflow: hidden;
+    box-shadow:
+      inset 0 0 0 3px var(--green),
+      inset 0 0 0 5px #fff,
+      inset 0 0 0 8px var(--blue);
   }
   .cover-image::before {
     content: '';
     position: absolute;
     inset: 8px;
-    background-image: url('hero.webp');
+    background-image: url('hero.png');
     background-size: cover; background-position: center;
     border-radius: 4px;
     filter: grayscale(1) sepia(0.15) contrast(0.95) brightness(1.08);
+  }
+  /* Waiting for the cover photo: drop `no-photo` once hero.png is in the folder. */
+  .cover-image.no-photo::before {
+    background-image: none;
+    background-color: var(--green-soft);
+    filter: none;
+  }
+  .cover-image.no-photo::after {
+    content: 'Cover photo to come';
+    position: absolute; inset: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px; color: var(--green-deep);
+    letter-spacing: 0.04em;
   }
 
   /* Two-line frames. 10 unique colour pairs from the YAL palette. */
@@ -102,7 +120,7 @@
   }
   .pill {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 6px 11px; background: var(--pink-soft); color: var(--pink-deep);
+    padding: 6px 11px; background: var(--green-soft); color: var(--green-deep);
     border-radius: 9px; font-size: 10px; font-weight: 800;
     letter-spacing: 0.14em; text-transform: uppercase;
   }
@@ -110,7 +128,7 @@
   .pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
 
   h1 { font-size: 38px; font-weight: 900; line-height: 1.02; letter-spacing: -1px; color: var(--ink); }
-  h1 em { color: var(--pink); font-style: normal; }
+  h1 em { color: var(--green); font-style: normal; }
   .subhead { font-size: 15px; color: var(--soft); line-height: 1.55; }
 
   .stats {
@@ -120,11 +138,11 @@
   .stat {
     background: #fff; border-radius: 9px;
     padding: 12px 12px 10px;
-    box-shadow: 0 0 0 2px var(--pink) inset;
+    box-shadow: 0 0 0 2px var(--green) inset;
   }
   .stat .n { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; line-height: 1; color: var(--ink); }
   .stat .l { font-size: 9px; font-weight: 800; color: var(--soft); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 5px; display: block; }
-  .stat.s2 { box-shadow: 0 0 0 2px var(--orange) inset; }
+  .stat.s2 { box-shadow: 0 0 0 2px var(--blue) inset; }
   .stat.s3 { box-shadow: 0 0 0 2px var(--yellow) inset; }
 
   /* ===== Stamp (straight, with team avatar + lab logo) ===== */
@@ -138,13 +156,13 @@
     position: relative;
     width: 150px;
     background:
-      linear-gradient(180deg, var(--yellow-soft) 0 42%, #fff 42% 72%, var(--pink-soft) 72% 100%);
+      linear-gradient(180deg, var(--green-soft) 0 42%, #fff 42% 72%, var(--blue-soft) 72% 100%);
     border-radius: 10px;
     padding: 22px 18px 20px;
     box-shadow:
-      inset 0 0 0 3px var(--yellow),
+      inset 0 0 0 3px var(--green),
       inset 0 0 0 5px #fff,
-      inset 0 0 0 8px var(--pink),
+      inset 0 0 0 8px var(--blue),
       0 10px 20px rgba(0,0,0,0.16);
     display: flex; flex-direction: column; align-items: center; gap: 10px;
     text-align: center;
@@ -157,17 +175,25 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 32px; line-height: 1;
     box-shadow:
-      inset 0 0 0 2px var(--yellow),
+      inset 0 0 0 2px var(--green),
       0 0 0 2px #fff,
-      0 0 0 4px var(--pink),
+      0 0 0 4px var(--blue),
       0 0 0 6px #fff,
-      0 0 0 8px var(--blue);
+      0 0 0 8px var(--yellow);
   }
   .stamp .s-logo {
     width: 96px;
     display: block;
     margin-top: 6px;
     filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+  }
+  /* Text stand-in until logo.png is dropped in the folder. */
+  .stamp .s-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 12px; line-height: 1.2;
+    color: var(--green-deep);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-top: 6px;
   }
   /* Round cancellation postmark, BELOW the stamp (no overlap) */
   .postmark {
@@ -212,19 +238,19 @@
     margin-top: 28px;
     display: flex; align-items: center; gap: 14px;
   }
-  .unfold-line { flex: 1; height: 2px; background: var(--pink); border-radius: 2px; opacity: 0.5; }
+  .unfold-line { flex: 1; height: 2px; background: var(--green); border-radius: 2px; opacity: 0.5; }
   .unfold-btn {
     appearance: none; border: none; cursor: pointer;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--pink-deep); background: var(--pink-soft);
+    color: var(--green-deep); background: var(--green-soft);
     padding: 12px 20px; border-radius: 10px;
     display: inline-flex; align-items: center; gap: 10px;
-    box-shadow: 0 0 0 2px var(--pink) inset, 0 3px 0 var(--pink-deep);
+    box-shadow: 0 0 0 2px var(--green) inset, 0 3px 0 var(--green-deep);
     transition: transform 0.12s ease, box-shadow 0.12s ease;
   }
-  .unfold-btn:hover { transform: translateY(-1px); box-shadow: 0 0 0 2px var(--pink) inset, 0 4px 0 var(--pink-deep); }
-  .unfold-btn:active { transform: translateY(2px); box-shadow: 0 0 0 2px var(--pink) inset, 0 1px 0 var(--pink-deep); }
+  .unfold-btn:hover { transform: translateY(-1px); box-shadow: 0 0 0 2px var(--green) inset, 0 4px 0 var(--green-deep); }
+  .unfold-btn:active { transform: translateY(2px); box-shadow: 0 0 0 2px var(--green) inset, 0 1px 0 var(--green-deep); }
   .unfold-btn .arrow { display: inline-block; transition: transform 0.25s ease; font-size: 14px; }
   .postcard.is-open .unfold-btn .arrow { transform: rotate(90deg); }
 
@@ -237,7 +263,7 @@
     background: #fff;
     margin-bottom: 18px;
     overflow: hidden;
-    border: 2.5px solid var(--f-accent, var(--pink));
+    border: 2.5px solid var(--f-accent, var(--green));
     box-shadow:
       0 10px 24px rgba(0,0,0,0.10),
       0 2px 6px rgba(0,0,0,0.05);
@@ -259,17 +285,17 @@
   }
   .fiche-num {
     width: 40px; height: 40px; border-radius: 11px;
-    background: var(--f-accent, var(--pink));
+    background: var(--f-accent, var(--green));
     color: #fff;
     display: flex; align-items: center; justify-content: center;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 800; font-size: 16px;
-    box-shadow: 0 0 0 2px #fff inset, 0 0 0 3px var(--f-accent, var(--pink)) inset;
+    box-shadow: 0 0 0 2px #fff inset, 0 0 0 3px var(--f-accent, var(--green)) inset;
   }
   .fiche-when {
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 800; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--f-accent-deep, var(--pink-deep));
+    color: var(--f-accent-deep, var(--green-deep));
     line-height: 1.5;
   }
   .fiche-title {
@@ -284,7 +310,7 @@
   }
   .fiche-toggle .chev { display: inline-block; transition: transform 0.2s ease; }
   .fiche.is-open .fiche-toggle .chev { transform: rotate(90deg); }
-  .fiche.is-open .fiche-toggle { color: var(--f-accent-deep, var(--pink-deep)); }
+  .fiche.is-open .fiche-toggle { color: var(--f-accent-deep, var(--green-deep)); }
 
   .fiche-body { display: none; }
   .fiche.is-open .fiche-body { display: block; }
@@ -302,17 +328,17 @@
   .fiche-photo {
     border-radius: 9px;
     background-size: cover; background-position: center;
-    background-color: var(--f-accent-soft, var(--pink-soft));
+    background-color: var(--f-accent-soft, var(--green-soft));
     position: relative;
-    box-shadow: inset 0 0 0 3px var(--f-accent, var(--pink));
+    box-shadow: inset 0 0 0 3px var(--f-accent, var(--green));
   }
   .fiche-photo.main { flex: 1 1 200px; min-height: 200px; }
   .fiche-photo.thumb { height: 120px; }
   .fiche-photo.no-photo {
     display: flex; align-items: center; justify-content: center;
     height: 220px;
-    background: var(--f-accent-soft, var(--pink-soft));
-    color: var(--f-accent-deep, var(--pink-deep));
+    background: var(--f-accent-soft, var(--green-soft));
+    color: var(--f-accent-deep, var(--green-deep));
     font-family: 'Patrick Hand', cursive;
     font-size: 15px;
     letter-spacing: 0.04em;
@@ -329,11 +355,11 @@
     display: block;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 800; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--f-accent-deep, var(--pink-deep)); margin-bottom: 6px;
+    color: var(--f-accent-deep, var(--green-deep)); margin-bottom: 6px;
   }
 
   .quote {
-    background: var(--f-accent-soft, var(--pink-soft));
+    background: var(--f-accent-soft, var(--green-soft));
     border-radius: 9px;
     padding: 14px 18px 12px 26px;
     font-family: 'Caveat', cursive;
@@ -344,21 +370,21 @@
   .quote::before {
     content: '"'; position: absolute; top: -2px; left: 10px;
     font-size: 38px; font-family: 'Bricolage Grotesque', sans-serif;
-    color: var(--f-accent, var(--pink)); opacity: 0.5; line-height: 1;
+    color: var(--f-accent, var(--green)); opacity: 0.5; line-height: 1;
   }
   .quote-by {
     display: block; margin-top: 6px;
     font-family: 'Manrope', sans-serif;
-    font-size: 10px; font-weight: 700; color: var(--f-accent-deep, var(--pink-deep));
+    font-size: 10px; font-weight: 700; color: var(--f-accent-deep, var(--green-deep));
     letter-spacing: 0.08em; text-transform: uppercase;
   }
 
   .info-block.mood-block {
-    background: var(--f-accent-soft, var(--pink-soft));
+    background: var(--f-accent-soft, var(--green-soft));
     box-shadow: none;
   }
   .info-block.mood-block .info-key {
-    color: var(--f-accent-deep, var(--pink-deep));
+    color: var(--f-accent-deep, var(--green-deep));
   }
 
   .keep {
@@ -397,8 +423,8 @@
     margin-top: 8px;
     padding: 4px 11px;
     border-radius: 20px;
-    background: var(--f-accent-soft, var(--pink-soft));
-    color: var(--f-accent-deep, var(--pink-deep));
+    background: var(--f-accent-soft, var(--green-soft));
+    color: var(--f-accent-deep, var(--green-deep));
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 10px; font-weight: 800;
     letter-spacing: 0.04em; text-decoration: none;
@@ -408,8 +434,8 @@
 
   .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
   .tag {
-    background: var(--f-accent-soft, var(--pink-soft));
-    color: var(--f-accent-deep, var(--pink-deep));
+    background: var(--f-accent-soft, var(--green-soft));
+    color: var(--f-accent-deep, var(--green-deep));
     padding: 3px 9px; border-radius: 6px;
     font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
   }
@@ -438,7 +464,7 @@
   }
   .timeline-past {
     position: relative;
-    display: grid; grid-template-columns: repeat(6, 1fr);
+    display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     padding: 16px 4px 0;
   }
@@ -471,6 +497,28 @@
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 800; font-size: 13px; line-height: 1.2;
     color: var(--ink);
+  }
+
+  /* ===== Timeline-many: many spots in one row + one shared subtext ===== */
+  .timeline.timeline-many {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    padding: 18px 4px 0;
+  }
+  .timeline.timeline-many .t-step { padding: 0 2px; }
+  .timeline.timeline-many .t-step .t-when {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    margin-bottom: 0;
+  }
+  .timeline.timeline-many .t-step .t-title,
+  .timeline.timeline-many .t-step .t-intent { display: none; }
+  .coming-text {
+    margin-top: 18px;
+    font-size: 13.5px;
+    color: var(--soft);
+    line-height: 1.55;
+    padding: 0 6px;
   }
 
   /* ===== Timeline for upcoming ===== */
@@ -560,12 +608,14 @@
     </svg>
     <div class="postmark">
       <div class="postmark-text">
-        La<br>Rochelle<br><small>18/06/2026</small>
+        [City]<br><small>[DD/MM/YYYY]</small>
       </div>
     </div>
     <div class="stamp">
-      <div class="team-avatar">👾</div>
-      <img src="logo.png" alt="L.A.B. logo" class="s-logo">
+      <div class="team-avatar">🐺</div>
+      <!-- Drop logo.png in this folder, then swap the line below for:
+           <img src="logo.png" alt="Digitale Wolven logo" class="s-logo"> -->
+      <div class="s-name">Digitale<br>Wolven</div>
     </div>
   </div>
 
@@ -573,18 +623,18 @@
 
     <!-- RECTO at postcard ratio 2138:1538 -->
     <section class="recto">
-      <div class="cover-image b-1"></div>
+      <div class="cover-image b-10 no-photo"></div>
       <div class="cover-text">
         <div class="pill-row">
-          <span class="pill">Pacman's · France</span>
-          <span class="pill orange">Dec 2025 → Jun 2026</span>
+          <span class="pill">Digitale Wolven · Belgium</span>
+          <span class="pill orange">[Mon Year] → [Mon Year]</span>
         </div>
-        <h1>From Pacman's to the <em>Youth AI Lab</em> · creativity included.</h1>
-        <p class="subhead">Six workshops from December to May: generative AI, reinforcement learning, a three-part "Stupid Invention" challenge, and a full-day immersion at the French Robotics Cup, with our Pacman's crew of 12 to 15 year olds.</p>
+        <h1>From Digitale Wolven to the <em>Youth AI Lab</em> · [three-word promise].</h1>
+        <p class="subhead">[Two or three sentences: how many workshops, over which months, the threads they followed, and who was in the room. Keep it concrete, no jargon.]</p>
         <div class="stats">
-          <div class="stat"><span class="n">6</span><span class="l">Sessions</span></div>
-          <div class="stat s2"><span class="n">21h30</span><span class="l">In the lab</span></div>
-          <div class="stat s3"><span class="n">13</span><span class="l">Researchers</span></div>
+          <div class="stat"><span class="n">[N]</span><span class="l">Sessions</span></div>
+          <div class="stat s2"><span class="n">[Nh]</span><span class="l">In the lab</span></div>
+          <div class="stat s3"><span class="n">[N]</span><span class="l">Researchers</span></div>
         </div>
       </div>
     </section>
@@ -593,38 +643,23 @@
     <div class="past-wrap">
       <div class="timeline-head">
         <h3>Workshops done</h3>
-        <span class="label">Six sessions in the Local Ouest</span>
+        <span class="label">[N] sessions at Digitale Wolven</span>
       </div>
       <div class="timeline-past">
         <div class="t-step">
           <div class="t-dot"></div>
-          <div class="t-when">Dec 2025</div>
-          <div class="t-title">Inside the Machine.</div>
+          <div class="t-when">[Mon Year]</div>
+          <div class="t-title">[Workshop title].</div>
         </div>
         <div class="t-step">
           <div class="t-dot"></div>
-          <div class="t-when">Jan 2026</div>
-          <div class="t-title">Reinforcing AI.</div>
+          <div class="t-when">[Mon Year]</div>
+          <div class="t-title">[Workshop title].</div>
         </div>
         <div class="t-step">
           <div class="t-dot"></div>
-          <div class="t-when">Mar 2026</div>
-          <div class="t-title">The Stupid Invention.</div>
-        </div>
-        <div class="t-step">
-          <div class="t-dot"></div>
-          <div class="t-when">Apr 2026</div>
-          <div class="t-title">Pitching to investors.</div>
-        </div>
-        <div class="t-step">
-          <div class="t-dot"></div>
-          <div class="t-when">Apr 2026</div>
-          <div class="t-title">The public pitch.</div>
-        </div>
-        <div class="t-step">
-          <div class="t-dot"></div>
-          <div class="t-when">May 2026</div>
-          <div class="t-title">French Robotics Cup.</div>
+          <div class="t-when">[Mon Year]</div>
+          <div class="t-title">[Workshop title].</div>
         </div>
       </div>
     </div>
@@ -644,52 +679,53 @@
       <div class="fiche accent-pink">
         <div class="fiche-head" onclick="toggleFiche(this)">
           <div class="fiche-num">01</div>
-          <div class="fiche-when">Dec 2025<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">Inside the Machine · Rule Finder, Word Predictor, Storyteller.</div>
+          <div class="fiche-when">[Mon Year]<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">[Workshop title] · [what it was about].</div>
           <div class="fiche-toggle"><span class="chev">▸</span></div>
         </div>
         <div class="fiche-body">
           <div class="fiche-content">
             <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-01.png');"></div>
+              <!-- With photos: <div class="fiche-photo main" style="background-image: url('step-01.png');"></div> -->
+              <div class="fiche-photo main no-photo">Photos to come</div>
               <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-01-b.png');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-01-c.png');"></div>
+                <div class="fiche-photo thumb no-photo">Photos to come</div>
+                <div class="fiche-photo thumb no-photo">Photos to come</div>
               </div>
             </div>
             <div class="fiche-right">
               <div class="moment">
                 <span class="moment-label">What we ran</span>
-                A first hands-on encounter with generative AI. Three short activities, each played twice: once by the youth themselves, once by a generative AI solution. A guessing game with seventy-two image cards to feel out pattern recognition. A word-by-word prediction game played by hand to show how AI text actually works. A short collaborative story to see how the AI reuses context. The point was to compare, side by side, how humans and machines tackle the same task.
+                [Four to six sentences telling the session as it happened: how it opened, what the youth handled, what shifted, how it closed. Present the steps in order. No captions, no meta commentary.]
               </div>
               <div class="info-row">
                 <div class="info-block">
                   <span class="info-key">Activity</span>
-                  <div class="info-val">AI Lab, Inside the Machine</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_IntroductoryAIGame_PredictiveAI.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
+                  <div class="info-val">[Activity name]</div>
+                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/[SheetFileName].pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
-                  <div class="info-val">4 researchers</div>
-                  <div class="info-meta">12 to 15 yo</div>
+                  <div class="info-val">[Group name]</div>
+                  <div class="info-meta">[Age range] yo</div>
                 </div>
                 <div class="info-block mood-block">
                   <span class="info-key">Mood</span>
-                  <div class="info-val">Curious and engaging. Lots of laughter when they caught the AI making things up.</div>
+                  <div class="info-val">[Two adjectives, then one sentence on what the room actually felt like.]</div>
                 </div>
                 <div class="info-block full">
                   <span class="info-key">Skills</span>
                   <div class="tag-row">
-                    <span class="tag">pattern recognition</span>
-                    <span class="tag">prompting</span>
-                    <span class="tag">critical thinking</span>
-                    <span class="tag">data literacy</span>
+                    <span class="tag">[skill]</span>
+                    <span class="tag">[skill]</span>
+                    <span class="tag">[skill]</span>
+                    <span class="tag">[skill]</span>
                   </div>
                 </div>
               </div>
               <div class="keep">
                 <span class="keep-label">Best practice</span>
-                At twelve to fifteen, the youth engage much faster when they play the activity first and meet the AI after. Doing the task themselves gives them something to compare against, and the AI stops feeling like magic.
+                [One or two sentences about the youth at that age, not about the technology or the logistics.]
               </div>
             </div>
           </div>
@@ -699,52 +735,52 @@
       <div class="fiche accent-blue">
         <div class="fiche-head" onclick="toggleFiche(this)">
           <div class="fiche-num">02</div>
-          <div class="fiche-when">Jan 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">Reinforcement Learning · unplugged to plugged.</div>
+          <div class="fiche-when">[Mon Year]<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">[Workshop title] · [what it was about].</div>
           <div class="fiche-toggle"><span class="chev">▸</span></div>
         </div>
         <div class="fiche-body">
           <div class="fiche-content">
             <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-02.png');"></div>
+              <div class="fiche-photo main no-photo">Photos to come</div>
               <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-02-b.png');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-02-c.png');"></div>
+                <div class="fiche-photo thumb no-photo">Photos to come</div>
+                <div class="fiche-photo thumb no-photo">Photos to come</div>
               </div>
             </div>
             <div class="fiche-right">
               <div class="moment">
                 <span class="moment-label">What we ran</span>
-                Three hours to figure out how a machine actually learns. First half unplugged: a six-by-six coloured grid laid on the floor became a maze with hidden traps and a hidden goal. The group played the learning agent, one square at a time, earning reward tokens when they moved well and losing the lot when they hit a trap. Each youth filled a blank sheet to invent their own way of mapping safe and trapped squares. Second half on real robots (Sphero Indi, Vinci Bot, Tale Bot), programmed through navigation and creative missions, with the objective of reproducing the safest route to the hidden goal.
+                [Four to six sentences telling the session as it happened.]
               </div>
               <div class="info-row">
                 <div class="info-block">
                   <span class="info-key">Activity</span>
-                  <div class="info-val">Reinforce Your Learning</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_BioInspiredAlgorithms.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
+                  <div class="info-val">[Activity name]</div>
+                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/[SheetFileName].pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
-                  <div class="info-val">8 in the lab</div>
-                  <div class="info-meta">12 to 15 yo</div>
+                  <div class="info-val">[Group name]</div>
+                  <div class="info-meta">[Age range] yo</div>
                 </div>
                 <div class="info-block mood-block">
                   <span class="info-key">Mood</span>
-                  <div class="info-val">Loud and hands-on. The creative missions inspired and engaged youth. The robots turned into a quiet competition between the groups.</div>
+                  <div class="info-val">[Two adjectives, then one sentence on what the room actually felt like.]</div>
                 </div>
                 <div class="info-block full">
                   <span class="info-key">Skills</span>
                   <div class="tag-row">
-                    <span class="tag">reinforcement learning</span>
-                    <span class="tag">robotics</span>
-                    <span class="tag">bio-inspired</span>
-                    <span class="tag">debugging</span>
+                    <span class="tag">[skill]</span>
+                    <span class="tag">[skill]</span>
+                    <span class="tag">[skill]</span>
+                    <span class="tag">[skill]</span>
                   </div>
                 </div>
               </div>
               <div class="keep">
                 <span class="keep-label">Best practice</span>
-                At this age, each youth invents their own way of mapping the maze: some go systematic from the start, others lean on memory, some draw pictures. Giving them a blank sheet for memorising their learning model is what lets those personal strategies appear, and then feed the collective discussion.
+                [One or two sentences about the youth at that age.]
               </div>
             </div>
           </div>
@@ -754,237 +790,74 @@
       <div class="fiche accent-orange">
         <div class="fiche-head" onclick="toggleFiche(this)">
           <div class="fiche-num">03</div>
-          <div class="fiche-when">Mar 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">The Stupid Invention, part 1 · ideation.</div>
+          <div class="fiche-when">[Mon Year]<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">[Workshop title] · [what it was about].</div>
           <div class="fiche-toggle"><span class="chev">▸</span></div>
         </div>
         <div class="fiche-body">
           <div class="fiche-content">
             <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-03.jpeg');"></div>
+              <div class="fiche-photo main no-photo">Photos to come</div>
               <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-03-b.jpg');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-03-c.png');"></div>
+                <div class="fiche-photo thumb no-photo">Photos to come</div>
+                <div class="fiche-photo thumb no-photo">Photos to come</div>
               </div>
             </div>
             <div class="fiche-right">
               <div class="moment">
                 <span class="moment-label">What we ran</span>
-                The session opened with a quiz: a slideshow of unusual products, real or AI-generated. The youth guessed which was real or faked and discussed what gave each one away. They then paired up to design a deliberately useless product, filling a short ideation sheet with the problem, the product idea, a name, a quick explanation and a sketch. The AI was on hand as a co-creator, especially to push the idea further or expand the description.
+                [Four to six sentences telling the session as it happened.]
               </div>
               <div class="info-row">
                 <div class="info-block">
                   <span class="info-key">Activity</span>
-                  <div class="info-val">The Stupid Invention, part one</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_TheStupidInvention.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
+                  <div class="info-val">[Activity name]</div>
+                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/[SheetFileName].pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
-                  <div class="info-val">5 inventors</div>
-                  <div class="info-meta">12 to 15 yo</div>
+                  <div class="info-val">[Group name]</div>
+                  <div class="info-meta">[Age range] yo</div>
                 </div>
                 <div class="info-block mood-block">
                   <span class="info-key">Mood</span>
-                  <div class="info-val">Playful and focused. The absurd brief lifted the pressure to be right, and they kept iterating until their idea made them laugh.</div>
+                  <div class="info-val">[Two adjectives, then one sentence on what the room actually felt like.]</div>
                 </div>
                 <div class="info-block full">
                   <span class="info-key">Skills</span>
                   <div class="tag-row">
-                    <span class="tag">prompting</span>
-                    <span class="tag">creativity</span>
-                    <span class="tag">hallucination spotting</span>
+                    <span class="tag">[skill]</span>
+                    <span class="tag">[skill]</span>
+                    <span class="tag">[skill]</span>
+                    <span class="tag">[skill]</span>
                   </div>
                 </div>
               </div>
               <div class="keep">
                 <span class="keep-label">Best practice</span>
-                A deliberately silly brief takes the pressure to be right off the youth. At twelve to fifteen, they feel free to experiment, push the AI further, and end up running many more iterations than they would on a serious topic.
+                [One or two sentences about the youth at that age.]
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="fiche accent-yellow">
-        <div class="fiche-head" onclick="toggleFiche(this)">
-          <div class="fiche-num">04</div>
-          <div class="fiche-when">Apr 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">The Stupid Invention, part 2 · building the fake.</div>
-          <div class="fiche-toggle"><span class="chev">▸</span></div>
-        </div>
-        <div class="fiche-body">
-          <div class="fiche-content">
-            <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-04.jpeg');"></div>
-              <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-04-b.png');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-04-c.png');"></div>
-              </div>
-            </div>
-            <div class="fiche-right">
-              <div class="moment">
-                <span class="moment-label">What we ran</span>
-                The session opened with the facilitator showing a fake but very convincing-looking product: real or AI? The brief for the rest of the day was clear: take the absurd invention from the previous session and build everything you would need to sell it, from text and visuals to a physical prototype, credible enough that an outside reader could be fooled.
-              </div>
-              <div class="info-row">
-                <div class="info-block">
-                  <span class="info-key">Activity</span>
-                  <div class="info-val">The Stupid Invention, part two</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_TheStupidInvention.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
-                </div>
-                <div class="info-block">
-                  <span class="info-key">Who</span>
-                  <div class="info-val">7 pitchers</div>
-                  <div class="info-meta">12 to 15 yo</div>
-                </div>
-                <div class="info-block mood-block">
-                  <span class="info-key">Mood</span>
-                  <div class="info-val">Concentrated, a bit conspiratorial. They got into the persuasion game and helped each other sharpen the fake.</div>
-                </div>
-                <div class="info-block full">
-                  <span class="info-key">Skills</span>
-                  <div class="tag-row">
-                    <span class="tag">fact-checking</span>
-                    <span class="tag">argumentation</span>
-                    <span class="tag">prompt iteration</span>
-                  </div>
-                </div>
-              </div>
-              <div class="keep">
-                <span class="keep-label">Best practice</span>
-                Asking the youth to build the fake themselves, rather than just spot one, is what makes the lesson stick. At this age they notice the manipulation techniques much better when they have to use them.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="fiche accent-green">
-        <div class="fiche-head" onclick="toggleFiche(this)">
-          <div class="fiche-num">05</div>
-          <div class="fiche-when">Apr 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">The Stupid Invention, part 3 · final pitch.</div>
-          <div class="fiche-toggle"><span class="chev">▸</span></div>
-        </div>
-        <div class="fiche-body">
-          <div class="fiche-content">
-            <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-05.jpg'); background-position: center 30%;"></div>
-              <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-05-b.jpeg');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-05-c.jpg');"></div>
-              </div>
-            </div>
-            <div class="fiche-right">
-              <div class="moment">
-                <span class="moment-label">What we ran</span>
-                The session opened with the youth themselves recapping the project to each other. Roles were then split: one focused on the cardboard prototype, the others on the investor slideshow. The evening ended with a full pitch in front of a jury, and a Q&A where the youth had to make clear which parts of their pitch were their own work and which came from the AI.
-              </div>
-              <div class="info-row">
-                <div class="info-block">
-                  <span class="info-key">Activity</span>
-                  <div class="info-val">The Stupid Invention, part three</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_TheStupidInvention.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
-                </div>
-                <div class="info-block">
-                  <span class="info-key">Who</span>
-                  <div class="info-val">3 finalists</div>
-                  <div class="info-meta">12 to 15 yo</div>
-                </div>
-                <div class="info-block mood-block">
-                  <span class="info-key">Mood</span>
-                  <div class="info-val">Nervous before, proud after. The Q&A turned into a defence of their own choices.</div>
-                </div>
-                <div class="info-block full">
-                  <span class="info-key">Skills</span>
-                  <div class="tag-row">
-                    <span class="tag">public speaking</span>
-                    <span class="tag">authorship</span>
-                    <span class="tag">AI awareness</span>
-                  </div>
-                </div>
-              </div>
-              <div class="keep">
-                <span class="keep-label">Best practice</span>
-                Letting the returning youth recap the project in their own words gives them ownership of the work and surfaces what really stuck for them from the previous session. New youth joining mid-sequence settle in much faster when their peers explain the project than when a facilitator does.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="fiche accent-pink">
-        <div class="fiche-head" onclick="toggleFiche(this)">
-          <div class="fiche-num">06</div>
-          <div class="fiche-when">May 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">Coupe de France de Robotique · full day immersion.</div>
-          <div class="fiche-toggle"><span class="chev">▸</span></div>
-        </div>
-        <div class="fiche-body">
-          <div class="fiche-content">
-            <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-06.png');"></div>
-              <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-06-b.png');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-06-c.png');"></div>
-              </div>
-            </div>
-            <div class="fiche-right">
-              <div class="moment">
-                <span class="moment-label">What we ran</span>
-                A full day at the Coupe de France de Robotique, the French national robotics competition held in La Roche-sur-Yon. The youth were able to discover robotics projects built by young makers, and to watch the matches, especially the junior finale. They also participated in two hands-on workshops with the association Planète Sciences Vendée: building a small "insect" robot from wire, a battery and a motor, then designing a keychain with a 3D pen.
-              </div>
-              <div class="info-row">
-                <div class="info-block">
-                  <span class="info-key">Activity</span>
-                  <div class="info-val">French Robotics Cup, finale</div>
-                </div>
-                <div class="info-block">
-                  <span class="info-key">Who</span>
-                  <div class="info-val">3 on the road</div>
-                  <div class="info-meta">12 to 15 yo</div>
-                </div>
-                <div class="info-block mood-block">
-                  <span class="info-key">Mood</span>
-                  <div class="info-val">Wide-eyed. They came back fired up, already talking about coming next year as competitors rather than spectators.</div>
-                </div>
-                <div class="info-block full">
-                  <span class="info-key">Skills</span>
-                  <div class="tag-row">
-                    <span class="tag">systems thinking</span>
-                    <span class="tag">field observation</span>
-                    <span class="tag">failure analysis</span>
-                  </div>
-                </div>
-              </div>
-              <div class="keep">
-                <span class="keep-label">Best practice</span>
-                Seeing competitors their own age, sometimes younger, changed what the youth thought they could do themselves. They can picture themselves in a year from now, participating in the next round of the competition with their own robot.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===== TIMELINE for upcoming ===== -->
+      <!-- ===== TIMELINE for upcoming (spots + shared subtext) ===== -->
       <div class="timeline-wrap">
         <div class="timeline-head">
           <h3>Next investigations</h3>
         </div>
-        <div class="timeline">
-          <div class="t-step">
-            <div class="t-dot"></div>
-            <div class="t-when">June 2026</div>
-            <div class="t-title">Catching AI in its biases.</div>
-            <div class="t-intent">An afternoon on bias in large language models. The youth will probe a model to find where it leaves people out, then propose ways to make its answers more representative.</div>
-          </div>
-          <div class="t-step tomorrow">
-            <div class="t-dot"></div>
-            <div class="t-when">July 2026 · intensive week</div>
-            <div class="t-title">Building WikiYouthBot on an SDG question.</div>
-            <div class="t-intent">A full week tied to one Sustainable Development Goal question. The youth will build a small local dataset, write chatbot's brief, and ship a specialised chatbot they can defend in front of an outside audience.</div>
-          </div>
+        <div class="timeline timeline-many">
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">[DD/MM/YYYY]</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">[DD/MM/YYYY]</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">[DD/MM/YYYY]</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">[DD/MM/YYYY]</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">[DD/MM/YYYY]</div></div>
+          <div class="t-step tomorrow"><div class="t-dot"></div><div class="t-when">[DD/MM/YYYY]</div></div>
         </div>
+        <p class="coming-text">
+          [Two sentences: through which month the sessions run, which threads they continue, and that a detailed plan follows each session as it is delivered.]
+        </p>
       </div>
 
     </div>

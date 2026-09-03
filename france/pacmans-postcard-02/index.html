@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pacman's · A french postcard from the Local Ouest</title>
+<title>Pacman's · A french postcard from the intensive week</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&family=Manrope:wght@400;500;600;700&family=Patrick+Hand&family=Caveat:wght@400;700&display=swap');
   :root {
@@ -39,11 +39,11 @@
     background: #ffffff;
     border-radius: 14px;
     box-shadow:
-      0 0 0 3px var(--pink) inset,
+      0 0 0 3px var(--blue) inset,
       0 0 0 6px #fffdf6 inset,
-      0 0 0 8px var(--orange) inset,
+      0 0 0 8px var(--pink) inset,
       0 0 0 11px #fffdf6 inset,
-      0 0 0 13px var(--yellow) inset,
+      0 0 0 13px var(--orange) inset,
       0 28px 70px rgba(0,0,0,0.16);
   }
 
@@ -56,7 +56,7 @@
   }
   .postcard.is-open .pc-inner { height: auto; }
 
-  /* ===== Recto fills available canvas (1280 x 920 closed) ===== */
+  /* ===== Recto fills available canvas ===== */
   .recto {
     flex: 1;
     width: 100%;
@@ -76,7 +76,7 @@
     content: '';
     position: absolute;
     inset: 8px;
-    background-image: url('hero.webp');
+    background-image: url('hero.jpg');
     background-size: cover; background-position: center;
     border-radius: 4px;
     filter: grayscale(1) sepia(0.15) contrast(0.95) brightness(1.08);
@@ -107,10 +107,11 @@
     letter-spacing: 0.14em; text-transform: uppercase;
   }
   .pill.orange { background: var(--orange-soft); color: var(--orange-deep); }
+  .pill.blue { background: var(--blue-soft); color: var(--blue-deep); }
   .pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
 
   h1 { font-size: 38px; font-weight: 900; line-height: 1.02; letter-spacing: -1px; color: var(--ink); }
-  h1 em { color: var(--pink); font-style: normal; }
+  h1 em { color: var(--blue-deep); font-style: normal; }
   .subhead { font-size: 15px; color: var(--soft); line-height: 1.55; }
 
   .stats {
@@ -120,12 +121,12 @@
   .stat {
     background: #fff; border-radius: 9px;
     padding: 12px 12px 10px;
-    box-shadow: 0 0 0 2px var(--pink) inset;
+    box-shadow: 0 0 0 2px var(--blue) inset;
   }
   .stat .n { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; line-height: 1; color: var(--ink); }
   .stat .l { font-size: 9px; font-weight: 800; color: var(--soft); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 5px; display: block; }
-  .stat.s2 { box-shadow: 0 0 0 2px var(--orange) inset; }
-  .stat.s3 { box-shadow: 0 0 0 2px var(--yellow) inset; }
+  .stat.s2 { box-shadow: 0 0 0 2px var(--pink) inset; }
+  .stat.s3 { box-shadow: 0 0 0 2px var(--orange) inset; }
 
   /* ===== Stamp (straight, with team avatar + lab logo) ===== */
   .stamp-block {
@@ -138,11 +139,11 @@
     position: relative;
     width: 150px;
     background:
-      linear-gradient(180deg, var(--yellow-soft) 0 42%, #fff 42% 72%, var(--pink-soft) 72% 100%);
+      linear-gradient(180deg, var(--blue-soft) 0 42%, #fff 42% 72%, var(--pink-soft) 72% 100%);
     border-radius: 10px;
     padding: 22px 18px 20px;
     box-shadow:
-      inset 0 0 0 3px var(--yellow),
+      inset 0 0 0 3px var(--blue),
       inset 0 0 0 5px #fff,
       inset 0 0 0 8px var(--pink),
       0 10px 20px rgba(0,0,0,0.16);
@@ -157,11 +158,11 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 32px; line-height: 1;
     box-shadow:
-      inset 0 0 0 2px var(--yellow),
+      inset 0 0 0 2px var(--blue),
       0 0 0 2px #fff,
       0 0 0 4px var(--pink),
       0 0 0 6px #fff,
-      0 0 0 8px var(--blue);
+      0 0 0 8px var(--orange);
   }
   .stamp .s-logo {
     width: 96px;
@@ -212,19 +213,19 @@
     margin-top: 28px;
     display: flex; align-items: center; gap: 14px;
   }
-  .unfold-line { flex: 1; height: 2px; background: var(--pink); border-radius: 2px; opacity: 0.5; }
+  .unfold-line { flex: 1; height: 2px; background: var(--blue); border-radius: 2px; opacity: 0.5; }
   .unfold-btn {
     appearance: none; border: none; cursor: pointer;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--pink-deep); background: var(--pink-soft);
+    color: var(--blue-deep); background: var(--blue-soft);
     padding: 12px 20px; border-radius: 10px;
     display: inline-flex; align-items: center; gap: 10px;
-    box-shadow: 0 0 0 2px var(--pink) inset, 0 3px 0 var(--pink-deep);
+    box-shadow: 0 0 0 2px var(--blue) inset, 0 3px 0 var(--blue-deep);
     transition: transform 0.12s ease, box-shadow 0.12s ease;
   }
-  .unfold-btn:hover { transform: translateY(-1px); box-shadow: 0 0 0 2px var(--pink) inset, 0 4px 0 var(--pink-deep); }
-  .unfold-btn:active { transform: translateY(2px); box-shadow: 0 0 0 2px var(--pink) inset, 0 1px 0 var(--pink-deep); }
+  .unfold-btn:hover { transform: translateY(-1px); box-shadow: 0 0 0 2px var(--blue) inset, 0 4px 0 var(--blue-deep); }
+  .unfold-btn:active { transform: translateY(2px); box-shadow: 0 0 0 2px var(--blue) inset, 0 1px 0 var(--blue-deep); }
   .unfold-btn .arrow { display: inline-block; transition: transform 0.25s ease; font-size: 14px; }
   .postcard.is-open .unfold-btn .arrow { transform: rotate(90deg); }
 
@@ -438,13 +439,13 @@
   }
   .timeline-past {
     position: relative;
-    display: grid; grid-template-columns: repeat(6, 1fr);
+    display: grid; grid-template-columns: repeat(5, 1fr);
     gap: 12px;
     padding: 16px 4px 0;
   }
   .timeline-past::before {
     content: '';
-    position: absolute; top: 26px; left: 4%; right: 4%;
+    position: absolute; top: 26px; left: 10%; right: 10%;
     height: 2.5px;
     background: repeating-linear-gradient(to right, var(--green) 0 8px, transparent 8px 14px);
     z-index: 0;
@@ -473,7 +474,7 @@
     color: var(--ink);
   }
 
-  /* ===== Timeline for upcoming ===== */
+  /* ===== What the week shipped ===== */
   .timeline-wrap {
     margin-top: 28px;
     padding: 22px 24px 24px;
@@ -497,13 +498,13 @@
   }
   .timeline {
     position: relative;
-    display: grid; grid-template-columns: 1fr 1fr;
+    display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     padding: 18px 8px 0;
   }
   .timeline::before {
     content: '';
-    position: absolute; top: 28px; left: 8%; right: 8%;
+    position: absolute; top: 28px; left: 12%; right: 12%;
     height: 2.5px;
     background: repeating-linear-gradient(to right, var(--yellow) 0 8px, transparent 8px 14px);
     z-index: 0;
@@ -539,6 +540,19 @@
     font-size: 12.5px; color: var(--soft); line-height: 1.45;
     max-width: 380px;
   }
+  .t-open {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: var(--yellow-soft);
+    color: var(--yellow-deep);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 10px; font-weight: 800;
+    letter-spacing: 0.04em; text-decoration: none;
+    transition: transform 0.12s ease;
+  }
+  .t-open:hover { transform: translateY(-1px); }
 
   .accent-pink { --f-accent: var(--pink); --f-accent-deep: var(--pink-deep); --f-accent-soft: var(--pink-soft); }
   .accent-orange { --f-accent: var(--orange); --f-accent-deep: var(--orange-deep); --f-accent-soft: var(--orange-soft); }
@@ -560,7 +574,7 @@
     </svg>
     <div class="postmark">
       <div class="postmark-text">
-        La<br>Rochelle<br><small>18/06/2026</small>
+        La<br>Rochelle<br><small>31/07/2026</small>
       </div>
     </div>
     <div class="stamp">
@@ -571,20 +585,20 @@
 
   <div class="pc-inner">
 
-    <!-- RECTO at postcard ratio 2138:1538 -->
+    <!-- RECTO -->
     <section class="recto">
-      <div class="cover-image b-1"></div>
+      <div class="cover-image b-3"></div>
       <div class="cover-text">
         <div class="pill-row">
           <span class="pill">Pacman's · France</span>
-          <span class="pill orange">Dec 2025 → Jun 2026</span>
+          <span class="pill blue">27 → 31 July 2026 · intensive week</span>
         </div>
-        <h1>From Pacman's to the <em>Youth AI Lab</em> · creativity included.</h1>
-        <p class="subhead">Six workshops from December to May: generative AI, reinforcement learning, a three-part "Stupid Invention" challenge, and a full-day immersion at the French Robotics Cup, with our Pacman's crew of 12 to 15 year olds.</p>
+        <h1>One week, three causes, and a chatbot that had to <em>prove it.</em></h1>
+        <p class="subhead">Five days at the Vent des Îles youth space in La Rochelle, paced by a sealed mission envelope opened every morning. Three teams voted their cause out of a Sustainable Development Goals bingo, then turned a general-purpose AI into a local expert: rules of conduct, personas, a field enquiry around the neighbourhood, a mascot, and a public reveal on the Friday.</p>
         <div class="stats">
-          <div class="stat"><span class="n">6</span><span class="l">Sessions</span></div>
-          <div class="stat s2"><span class="n">21h30</span><span class="l">In the lab</span></div>
-          <div class="stat s3"><span class="n">13</span><span class="l">Researchers</span></div>
+          <div class="stat"><span class="n">5</span><span class="l">Days</span></div>
+          <div class="stat s2"><span class="n">17h</span><span class="l">In the lab</span></div>
+          <div class="stat s3"><span class="n">11</span><span class="l">Researchers</span></div>
         </div>
       </div>
     </section>
@@ -592,39 +606,34 @@
     <!-- PAST TIMELINE (closed view only) -->
     <div class="past-wrap">
       <div class="timeline-head">
-        <h3>Workshops done</h3>
-        <span class="label">Six sessions in the Local Ouest</span>
+        <h3>The week, day by day</h3>
+        <span class="label">WikiYouthBot in the Local Ouest</span>
       </div>
       <div class="timeline-past">
         <div class="t-step">
           <div class="t-dot"></div>
-          <div class="t-when">Dec 2025</div>
-          <div class="t-title">Inside the Machine.</div>
+          <div class="t-when">Monday</div>
+          <div class="t-title">Choosing a cause.</div>
         </div>
         <div class="t-step">
           <div class="t-dot"></div>
-          <div class="t-when">Jan 2026</div>
-          <div class="t-title">Reinforcing AI.</div>
+          <div class="t-when">Tuesday</div>
+          <div class="t-title">The heart and the sources.</div>
         </div>
         <div class="t-step">
           <div class="t-dot"></div>
-          <div class="t-when">Mar 2026</div>
-          <div class="t-title">The Stupid Invention.</div>
+          <div class="t-when">Wednesday</div>
+          <div class="t-title">The ears and the voice.</div>
         </div>
         <div class="t-step">
           <div class="t-dot"></div>
-          <div class="t-when">Apr 2026</div>
-          <div class="t-title">Pitching to investors.</div>
+          <div class="t-when">Thursday</div>
+          <div class="t-title">The memory.</div>
         </div>
         <div class="t-step">
           <div class="t-dot"></div>
-          <div class="t-when">Apr 2026</div>
-          <div class="t-title">The public pitch.</div>
-        </div>
-        <div class="t-step">
-          <div class="t-dot"></div>
-          <div class="t-when">May 2026</div>
-          <div class="t-title">French Robotics Cup.</div>
+          <div class="t-when">Friday</div>
+          <div class="t-title">The personality.</div>
         </div>
       </div>
     </div>
@@ -633,118 +642,63 @@
     <div class="unfold-row">
       <span class="unfold-line"></span>
       <button class="unfold-btn" id="unfoldBtn" type="button">
-        <span class="unfold-label">Unfold the journey</span> <span class="arrow">▸</span>
+        <span class="unfold-label">Unfold the week</span> <span class="arrow">▸</span>
       </button>
       <span class="unfold-line"></span>
     </div>
 
-    <!-- ACCORDION (only sessions done) -->
+    <!-- ACCORDION -->
     <div class="accordion" id="accordion">
 
-      <div class="fiche accent-pink">
+      <div class="fiche accent-green">
         <div class="fiche-head" onclick="toggleFiche(this)">
           <div class="fiche-num">01</div>
-          <div class="fiche-when">Dec 2025<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">Inside the Machine · Rule Finder, Word Predictor, Storyteller.</div>
+          <div class="fiche-when">Monday<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">SDG bingo · choosing a cause worth a week.</div>
           <div class="fiche-toggle"><span class="chev">▸</span></div>
         </div>
         <div class="fiche-body">
           <div class="fiche-content">
             <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-01.png');"></div>
+              <div class="fiche-photo main" style="background-image: url('step-01.jpg');"></div>
               <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-01-b.png');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-01-c.png');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-01-b.jpg');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-01-c.jpg');"></div>
               </div>
             </div>
             <div class="fiche-right">
               <div class="moment">
                 <span class="moment-label">What we ran</span>
-                A first hands-on encounter with generative AI. Three short activities, each played twice: once by the youth themselves, once by a generative AI solution. A guessing game with seventy-two image cards to feel out pattern recognition. A word-by-word prediction game played by hand to show how AI text actually works. A short collaborative story to see how the AI reuses context. The point was to compare, side by side, how humans and machines tackle the same task.
+                The week opened with no subject decided. The youth played a bingo built for the workshop on the seventeen Sustainable Development Goals: printed grids on the table, numbers drawn one by one, and each number bringing up a goal and a concrete situation behind it. Thirty situations went through the room that way, argued one after the other, before a show of hands settled which ones stayed. Three causes came out of the vote and became the three teams of the week: spotting wildfire outbreaks from satellite images, mapping coral reefs, and peer mediation against bullying at school.
               </div>
               <div class="info-row">
                 <div class="info-block">
                   <span class="info-key">Activity</span>
-                  <div class="info-val">AI Lab, Inside the Machine</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_IntroductoryAIGame_PredictiveAI.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
+                  <div class="info-val">WikiYouthBot, opening the week</div>
+                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Template_Explorations_Ideation_Sheet_WikiYouthBot.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
-                  <div class="info-val">4 researchers</div>
-                  <div class="info-meta">12 to 15 yo</div>
+                  <div class="info-val">11 researchers</div>
+                  <div class="info-meta">12 to 15 yo, 3 teams</div>
                 </div>
                 <div class="info-block mood-block">
                   <span class="info-key">Mood</span>
-                  <div class="info-val">Curious and engaging. Lots of laughter when they caught the AI making things up.</div>
+                  <div class="info-val">Noisy and competitive, the way a bingo should be. Thirty situations, thirty arguments, and no adult deciding the winner.</div>
                 </div>
                 <div class="info-block full">
                   <span class="info-key">Skills</span>
                   <div class="tag-row">
-                    <span class="tag">pattern recognition</span>
-                    <span class="tag">prompting</span>
-                    <span class="tag">critical thinking</span>
-                    <span class="tag">data literacy</span>
+                    <span class="tag">SDG literacy</span>
+                    <span class="tag">framing a problem</span>
+                    <span class="tag">collective decision</span>
+                    <span class="tag">teamwork</span>
                   </div>
                 </div>
               </div>
               <div class="keep">
                 <span class="keep-label">Best practice</span>
-                At twelve to fifteen, the youth engage much faster when they play the activity first and meet the AI after. Doing the task themselves gives them something to compare against, and the AI stops feeling like magic.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="fiche accent-blue">
-        <div class="fiche-head" onclick="toggleFiche(this)">
-          <div class="fiche-num">02</div>
-          <div class="fiche-when">Jan 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">Reinforcement Learning · unplugged to plugged.</div>
-          <div class="fiche-toggle"><span class="chev">▸</span></div>
-        </div>
-        <div class="fiche-body">
-          <div class="fiche-content">
-            <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-02.png');"></div>
-              <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-02-b.png');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-02-c.png');"></div>
-              </div>
-            </div>
-            <div class="fiche-right">
-              <div class="moment">
-                <span class="moment-label">What we ran</span>
-                Three hours to figure out how a machine actually learns. First half unplugged: a six-by-six coloured grid laid on the floor became a maze with hidden traps and a hidden goal. The group played the learning agent, one square at a time, earning reward tokens when they moved well and losing the lot when they hit a trap. Each youth filled a blank sheet to invent their own way of mapping safe and trapped squares. Second half on real robots (Sphero Indi, Vinci Bot, Tale Bot), programmed through navigation and creative missions, with the objective of reproducing the safest route to the hidden goal.
-              </div>
-              <div class="info-row">
-                <div class="info-block">
-                  <span class="info-key">Activity</span>
-                  <div class="info-val">Reinforce Your Learning</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_BioInspiredAlgorithms.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
-                </div>
-                <div class="info-block">
-                  <span class="info-key">Who</span>
-                  <div class="info-val">8 in the lab</div>
-                  <div class="info-meta">12 to 15 yo</div>
-                </div>
-                <div class="info-block mood-block">
-                  <span class="info-key">Mood</span>
-                  <div class="info-val">Loud and hands-on. The creative missions inspired and engaged youth. The robots turned into a quiet competition between the groups.</div>
-                </div>
-                <div class="info-block full">
-                  <span class="info-key">Skills</span>
-                  <div class="tag-row">
-                    <span class="tag">reinforcement learning</span>
-                    <span class="tag">robotics</span>
-                    <span class="tag">bio-inspired</span>
-                    <span class="tag">debugging</span>
-                  </div>
-                </div>
-              </div>
-              <div class="keep">
-                <span class="keep-label">Best practice</span>
-                At this age, each youth invents their own way of mapping the maze: some go systematic from the start, others lean on memory, some draw pictures. Giving them a blank sheet for memorising their learning model is what lets those personal strategies appear, and then feed the collective discussion.
+                A game that puts thirty situations on the table before any vote is what makes the choice real. At twelve to fifteen, the value sat as much in the arguments traded over each situation as in the three causes that came out, and the youth defended them all week because they had picked them.
               </div>
             </div>
           </div>
@@ -753,160 +707,108 @@
 
       <div class="fiche accent-orange">
         <div class="fiche-head" onclick="toggleFiche(this)">
-          <div class="fiche-num">03</div>
-          <div class="fiche-when">Mar 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">The Stupid Invention, part 1 · ideation.</div>
+          <div class="fiche-num">02</div>
+          <div class="fiche-when">Tuesday<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">Mission 01 · the heart and the sources.</div>
           <div class="fiche-toggle"><span class="chev">▸</span></div>
         </div>
         <div class="fiche-body">
           <div class="fiche-content">
             <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-03.jpeg');"></div>
+              <div class="fiche-photo main" style="background-image: url('step-02.jpg');"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-02-b.jpg');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-02-c.jpg');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                Each team gave its chatbot an identity: a name, a mission in one sentence, and the exact territory its cause covers. They then wrote two or three rules of conduct, what it always does and what it never does, plus their own quality requirements: dated figures, named actors, precise places. The afternoon put a general-purpose AI on the spot, with a voice-driven press conference where the whole room questioned it out loud on their subject, rumours and fake news included. The bullying team came out of it with a rule written in their own words: stop inventing sources.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">WikiYouthBot, mission 01</div>
+                  <a class="t-sheet" href="https://youth-ai-lab.github.io/wikiyouthbot/tools/press-conference/" target="_blank" rel="noopener">Open the press conference ↗</a>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">11 researchers</div>
+                  <div class="info-meta">12 to 15 yo, 3 teams</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Sceptical, then loud. Catching the AI citing a source that did not exist turned the room against it.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skills</span>
+                  <div class="tag-row">
+                    <span class="tag">system prompt</span>
+                    <span class="tag">source criticism</span>
+                    <span class="tag">hallucination spotting</span>
+                    <span class="tag">writing rules</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                An AI answering out loud, to the whole room, gets caught much faster than the same AI typing on a private screen. At this age the collective reaction is what turns a vague suspicion into a rule the youth are willing to write down and enforce.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fiche accent-blue">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">03</div>
+          <div class="fiche-when">Wednesday<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">Mission 02 · the ears and the voice.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-03.jpg');"></div>
               <div class="photo-row">
                 <div class="fiche-photo thumb" style="background-image: url('step-03-b.jpg');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-03-c.png');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-03-c.jpg');"></div>
               </div>
             </div>
             <div class="fiche-right">
               <div class="moment">
                 <span class="moment-label">What we ran</span>
-                The session opened with a quiz: a slideshow of unusual products, real or AI-generated. The youth guessed which was real or faked and discussed what gave each one away. They then paired up to design a deliberately useless product, filling a short ideation sheet with the problem, the product idea, a name, a quick explanation and a sketch. The AI was on hand as a co-creator, especially to push the idea further or expand the description.
+                A day spent on the people who would actually open the chatbot. Each team drew and wrote persona cards: a first name, an age, a job, a family situation, favourite apps, and sliders for how much they know about the cause, how patient they are, how they feel about technology. Then, for each persona, the question they arrive with and the tone the chatbot owes them. The day closed on reference question-and-answer sheets: the question, the answer the team considers right, the sources it must cite, and what it must never say. Seven personas came out of the day, including a conspiracy theorist written by the fire team to trap their own chatbot.
               </div>
               <div class="info-row">
                 <div class="info-block">
                   <span class="info-key">Activity</span>
-                  <div class="info-val">The Stupid Invention, part one</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_TheStupidInvention.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
+                  <div class="info-val">WikiYouthBot, mission 02</div>
+                  <a class="t-sheet" href="https://youth-ai-lab.github.io/wikiyouthbot/projects/feurisson/" target="_blank" rel="noopener">Read the personas ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
-                  <div class="info-val">5 inventors</div>
-                  <div class="info-meta">12 to 15 yo</div>
+                  <div class="info-val">11 researchers</div>
+                  <div class="info-meta">12 to 15 yo, 3 teams</div>
                 </div>
                 <div class="info-block mood-block">
                   <span class="info-key">Mood</span>
-                  <div class="info-val">Playful and focused. The absurd brief lifted the pressure to be right, and they kept iterating until their idea made them laugh.</div>
+                  <div class="info-val">Absorbed and funny. The personas got backstories, pets and terrible taste in apps before they got a single question.</div>
                 </div>
                 <div class="info-block full">
                   <span class="info-key">Skills</span>
                   <div class="tag-row">
-                    <span class="tag">prompting</span>
-                    <span class="tag">creativity</span>
-                    <span class="tag">hallucination spotting</span>
+                    <span class="tag">persona design</span>
+                    <span class="tag">audience awareness</span>
+                    <span class="tag">tone of voice</span>
+                    <span class="tag">reference answers</span>
                   </div>
                 </div>
               </div>
               <div class="keep">
                 <span class="keep-label">Best practice</span>
-                A deliberately silly brief takes the pressure to be right off the youth. At twelve to fifteen, they feel free to experiment, push the AI further, and end up running many more iterations than they would on a serious topic.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="fiche accent-yellow">
-        <div class="fiche-head" onclick="toggleFiche(this)">
-          <div class="fiche-num">04</div>
-          <div class="fiche-when">Apr 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">The Stupid Invention, part 2 · building the fake.</div>
-          <div class="fiche-toggle"><span class="chev">▸</span></div>
-        </div>
-        <div class="fiche-body">
-          <div class="fiche-content">
-            <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-04.jpeg');"></div>
-              <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-04-b.png');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-04-c.png');"></div>
-              </div>
-            </div>
-            <div class="fiche-right">
-              <div class="moment">
-                <span class="moment-label">What we ran</span>
-                The session opened with the facilitator showing a fake but very convincing-looking product: real or AI? The brief for the rest of the day was clear: take the absurd invention from the previous session and build everything you would need to sell it, from text and visuals to a physical prototype, credible enough that an outside reader could be fooled.
-              </div>
-              <div class="info-row">
-                <div class="info-block">
-                  <span class="info-key">Activity</span>
-                  <div class="info-val">The Stupid Invention, part two</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_TheStupidInvention.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
-                </div>
-                <div class="info-block">
-                  <span class="info-key">Who</span>
-                  <div class="info-val">7 pitchers</div>
-                  <div class="info-meta">12 to 15 yo</div>
-                </div>
-                <div class="info-block mood-block">
-                  <span class="info-key">Mood</span>
-                  <div class="info-val">Concentrated, a bit conspiratorial. They got into the persuasion game and helped each other sharpen the fake.</div>
-                </div>
-                <div class="info-block full">
-                  <span class="info-key">Skills</span>
-                  <div class="tag-row">
-                    <span class="tag">fact-checking</span>
-                    <span class="tag">argumentation</span>
-                    <span class="tag">prompt iteration</span>
-                  </div>
-                </div>
-              </div>
-              <div class="keep">
-                <span class="keep-label">Best practice</span>
-                Asking the youth to build the fake themselves, rather than just spot one, is what makes the lesson stick. At this age they notice the manipulation techniques much better when they have to use them.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="fiche accent-green">
-        <div class="fiche-head" onclick="toggleFiche(this)">
-          <div class="fiche-num">05</div>
-          <div class="fiche-when">Apr 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">The Stupid Invention, part 3 · final pitch.</div>
-          <div class="fiche-toggle"><span class="chev">▸</span></div>
-        </div>
-        <div class="fiche-body">
-          <div class="fiche-content">
-            <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-05.jpg'); background-position: center 30%;"></div>
-              <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-05-b.jpeg');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-05-c.jpg');"></div>
-              </div>
-            </div>
-            <div class="fiche-right">
-              <div class="moment">
-                <span class="moment-label">What we ran</span>
-                The session opened with the youth themselves recapping the project to each other. Roles were then split: one focused on the cardboard prototype, the others on the investor slideshow. The evening ended with a full pitch in front of a jury, and a Q&A where the youth had to make clear which parts of their pitch were their own work and which came from the AI.
-              </div>
-              <div class="info-row">
-                <div class="info-block">
-                  <span class="info-key">Activity</span>
-                  <div class="info-val">The Stupid Invention, part three</div>
-                  <a class="t-sheet" href="https://github.com/Youth-AI-Lab/deliverables/raw/master/Ideation_Sheets/YouthAiLab_Explorations_Ideation_Sheet_TheStupidInvention.pdf" target="_blank" rel="noopener">Discover the activity ↗</a>
-                </div>
-                <div class="info-block">
-                  <span class="info-key">Who</span>
-                  <div class="info-val">3 finalists</div>
-                  <div class="info-meta">12 to 15 yo</div>
-                </div>
-                <div class="info-block mood-block">
-                  <span class="info-key">Mood</span>
-                  <div class="info-val">Nervous before, proud after. The Q&A turned into a defence of their own choices.</div>
-                </div>
-                <div class="info-block full">
-                  <span class="info-key">Skills</span>
-                  <div class="tag-row">
-                    <span class="tag">public speaking</span>
-                    <span class="tag">authorship</span>
-                    <span class="tag">AI awareness</span>
-                  </div>
-                </div>
-              </div>
-              <div class="keep">
-                <span class="keep-label">Best practice</span>
-                Letting the returning youth recap the project in their own words gives them ownership of the work and surfaces what really stuck for them from the previous session. New youth joining mid-sequence settle in much faster when their peers explain the project than when a facilitator does.
+                Asking the youth to write a persona who disagrees with their chatbot is what pushes the work past decoration. Building their own opponent forced them to decide, in writing, how the chatbot answers someone it will not convince: never confirm without proof, never be brusque, keep asking questions.
               </div>
             </div>
           </div>
@@ -915,74 +817,141 @@
 
       <div class="fiche accent-pink">
         <div class="fiche-head" onclick="toggleFiche(this)">
-          <div class="fiche-num">06</div>
-          <div class="fiche-when">May 2026<br><span class="status-chip done">Done</span></div>
-          <div class="fiche-title">Coupe de France de Robotique · full day immersion.</div>
+          <div class="fiche-num">04</div>
+          <div class="fiche-when">Thursday<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">Mission 03 · the memory, built in the neighbourhood.</div>
           <div class="fiche-toggle"><span class="chev">▸</span></div>
         </div>
         <div class="fiche-body">
           <div class="fiche-content">
             <div class="photo-stack">
-              <div class="fiche-photo main" style="background-image: url('step-06.png');"></div>
+              <div class="fiche-photo main" style="background-image: url('step-04.jpg');"></div>
               <div class="photo-row">
-                <div class="fiche-photo thumb" style="background-image: url('step-06-b.png');"></div>
-                <div class="fiche-photo thumb" style="background-image: url('step-06-c.png');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-04-b.jpg');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-04-c.jpg');"></div>
               </div>
             </div>
             <div class="fiche-right">
               <div class="moment">
                 <span class="moment-label">What we ran</span>
-                A full day at the Coupe de France de Robotique, the French national robotics competition held in La Roche-sur-Yon. The youth were able to discover robotics projects built by young makers, and to watch the matches, especially the junior finale. They also participated in two hands-on workshops with the association Planète Sciences Vendée: building a small "insect" robot from wire, a battery and a motor, then designing a keychain with a 3D pen.
+                The field enquiry day. Colour-coded cards, one colour per type of information: a figure, an actor, a place or fact, a useful gesture. Every card carries the answer and a line where the source goes. The teams searched online and, above all, went out to question the people around the youth space. The fire team came back with thirty-five filled cards, from the role of the forest office to the four fire-risk sectors of the Charente-Maritime. The bullying team counted how many people out of five knew the 3018 helpline, and what five adults would tell a young person to do. Those cards became the memory of the chatbots.
               </div>
               <div class="info-row">
                 <div class="info-block">
                   <span class="info-key">Activity</span>
-                  <div class="info-val">French Robotics Cup, finale</div>
+                  <div class="info-val">WikiYouthBot, mission 03</div>
+                  <a class="t-sheet" href="https://youth-ai-lab.github.io/wikiyouthbot/tools/key-data-cards/" target="_blank" rel="noopener">Open the data cards ↗</a>
                 </div>
                 <div class="info-block">
                   <span class="info-key">Who</span>
-                  <div class="info-val">3 on the road</div>
-                  <div class="info-meta">12 to 15 yo</div>
+                  <div class="info-val">11 researchers</div>
+                  <div class="info-meta">12 to 15 yo, 3 teams</div>
                 </div>
                 <div class="info-block mood-block">
                   <span class="info-key">Mood</span>
-                  <div class="info-val">Wide-eyed. They came back fired up, already talking about coming next year as competitors rather than spectators.</div>
+                  <div class="info-val">Out of the room and back again. Interviewing strangers was the hard part, comparing the answers was the fun part.</div>
                 </div>
                 <div class="info-block full">
                   <span class="info-key">Skills</span>
                   <div class="tag-row">
-                    <span class="tag">systems thinking</span>
-                    <span class="tag">field observation</span>
-                    <span class="tag">failure analysis</span>
+                    <span class="tag">field enquiry</span>
+                    <span class="tag">dataset building</span>
+                    <span class="tag">sourcing</span>
+                    <span class="tag">data literacy</span>
                   </div>
                 </div>
               </div>
               <div class="keep">
                 <span class="keep-label">Best practice</span>
-                Seeing competitors their own age, sometimes younger, changed what the youth thought they could do themselves. They can picture themselves in a year from now, participating in the next round of the competition with their own robot.
+                A source line on every card is what makes the difference. Several cards came back marked "source: AI" in the youth's own handwriting, next to others marked with a ministry website or an interview, and that visible gap is far more convincing than any lecture on verifying information.
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ===== TIMELINE for upcoming ===== -->
+      <div class="fiche accent-yellow">
+        <div class="fiche-head" onclick="toggleFiche(this)">
+          <div class="fiche-num">05</div>
+          <div class="fiche-when">Friday<br><span class="status-chip done">Done</span></div>
+          <div class="fiche-title">Mission 04 · personality, red lines and the reveal.</div>
+          <div class="fiche-toggle"><span class="chev">▸</span></div>
+        </div>
+        <div class="fiche-body">
+          <div class="fiche-content">
+            <div class="photo-stack">
+              <div class="fiche-photo main" style="background-image: url('step-05.jpg'); background-position: center 25%;"></div>
+              <div class="photo-row">
+                <div class="fiche-photo thumb" style="background-image: url('step-05-b.jpg');"></div>
+                <div class="fiche-photo thumb" style="background-image: url('step-05-c.jpg');"></div>
+              </div>
+            </div>
+            <div class="fiche-right">
+              <div class="moment">
+                <span class="moment-label">What we ran</span>
+                The last day gave the chatbots a face and a voice. Mascots were drawn and coloured: a smiling flame with smoke for hair for Feurisson, a character carrying a red, blue and yellow shield for Superbot. Each team fixed its tone and its red lines, what the chatbot will never say whatever it is asked, then assembled an identity poster with the QR code that opens it. The fire team kept a constraint it refused to drop: Feurisson answers only in verse, because advice that rhymes is remembered better, and rhyming does not excuse being wrong. The week closed with each team presenting its chatbot to the others and to the adults present, live questions included.
+              </div>
+              <div class="info-row">
+                <div class="info-block">
+                  <span class="info-key">Activity</span>
+                  <div class="info-val">WikiYouthBot, mission 04</div>
+                  <a class="t-sheet" href="https://youth-ai-lab.github.io/wikiyouthbot/" target="_blank" rel="noopener">See the productions ↗</a>
+                </div>
+                <div class="info-block">
+                  <span class="info-key">Who</span>
+                  <div class="info-val">11 researchers</div>
+                  <div class="info-meta">12 to 15 yo, 3 teams</div>
+                </div>
+                <div class="info-block mood-block">
+                  <span class="info-key">Mood</span>
+                  <div class="info-val">Last-minute and proud. Colouring the mascot while the poster was still drying, then defending the whole thing out loud.</div>
+                </div>
+                <div class="info-block full">
+                  <span class="info-key">Skills</span>
+                  <div class="tag-row">
+                    <span class="tag">character design</span>
+                    <span class="tag">red lines</span>
+                    <span class="tag">AI configuration</span>
+                    <span class="tag">public presentation</span>
+                  </div>
+                </div>
+              </div>
+              <div class="keep">
+                <span class="keep-label">Best practice</span>
+                Drawing the mascot is not decoration, it is when the rules become concrete. At twelve to fifteen, giving the chatbot a face is the moment the youth start saying "it would never answer that", and the red lines get written by themselves.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== WHAT THE WEEK SHIPPED ===== -->
       <div class="timeline-wrap">
         <div class="timeline-head">
-          <h3>Next investigations</h3>
+          <h3>What the week shipped</h3>
+          <span class="label">Published as the teams left them</span>
         </div>
         <div class="timeline">
           <div class="t-step">
             <div class="t-dot"></div>
-            <div class="t-when">June 2026</div>
-            <div class="t-title">Catching AI in its biases.</div>
-            <div class="t-intent">An afternoon on bias in large language models. The youth will probe a model to find where it leaves people out, then propose ways to make its answers more representative.</div>
+            <div class="t-when">Fire prevention</div>
+            <div class="t-title">Feurisson.</div>
+            <div class="t-intent">A chatbot that answers only in verse, cites three sources before it speaks, and covers the fire-risk sectors of the Charente-Maritime.</div>
+            <a class="t-open" href="https://youth-ai-lab.github.io/wikiyouthbot/france/feurisson/" target="_blank" rel="noopener">Open the chatbot ↗</a>
+          </div>
+          <div class="t-step">
+            <div class="t-dot"></div>
+            <div class="t-when">School bullying</div>
+            <div class="t-title">Superbot.</div>
+            <div class="t-intent">A chatbot answering from a sourced base, which puts personal distress ahead of every other rule and points to an adult of trust.</div>
+            <a class="t-open" href="https://youth-ai-lab.github.io/wikiyouthbot/france/superbot/" target="_blank" rel="noopener">Open the chatbot ↗</a>
           </div>
           <div class="t-step tomorrow">
             <div class="t-dot"></div>
-            <div class="t-when">July 2026 · intensive week</div>
-            <div class="t-title">Building WikiYouthBot on an SDG question.</div>
-            <div class="t-intent">A full week tied to one Sustainable Development Goal question. The youth will build a small local dataset, write chatbot's brief, and ship a specialised chatbot they can defend in front of an outside audience.</div>
+            <div class="t-when">Robot prototype</div>
+            <div class="t-title">Robo-Caillou.</div>
+            <div class="t-intent">A neighbourhood watch robot born from the enquiry, whose eyes follow the official fire vigilance level and which never sprays a person, only an ember.</div>
+            <a class="t-open" href="https://youth-ai-lab.github.io/wikiyouthbot/france/robo-caillou/" target="_blank" rel="noopener">Open the prototype ↗</a>
           </div>
         </div>
       </div>
@@ -1016,7 +985,7 @@
 
   unfoldBtn.addEventListener('click', () => {
     postcard.classList.toggle('is-open');
-    labelEl.textContent = postcard.classList.contains('is-open') ? 'Fold back' : 'Unfold the journey';
+    labelEl.textContent = postcard.classList.contains('is-open') ? 'Fold back' : 'Unfold the week';
   });
 
   function toggleFiche(headEl) {

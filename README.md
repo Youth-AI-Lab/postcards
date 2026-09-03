@@ -13,12 +13,18 @@ postcards/
 ├── cornicello.svg                   Lucky-charm icon shared by the pages
 ├── france/
 │   ├── index.html                   Pacman's landing
-│   └── pacmans-postcard-01/         The folded postcard
+│   ├── pacmans-postcard-01/         Dec 2025 → Jun 2026, six workshops
+│   │   ├── index.html
+│   │   ├── hero.webp                Cover photo
+│   │   ├── logo.png                 L.A.B. logo (lab home)
+│   │   ├── step-XX(-b/-c).{png,jpg,jpeg}   3 photos per workshop
+│   │   └── texts.md                 All copy for re-editing
+│   └── pacmans-postcard-02/         27 → 31 Jul 2026, the WikiYouthBot intensive week
 │       ├── index.html
-│       ├── hero.webp                Cover photo
-│       ├── logo.png                 L.A.B. logo (lab home)
-│       ├── step-XX(-b/-c).{png,jpg,jpeg}   3 photos per workshop
-│       └── texts.md                 All copy for re-editing
+│       ├── hero.jpg
+│       ├── logo.png
+│       ├── step-XX(-b/-c).jpg       3 photos per day
+│       └── texts.md
 ├── italy/
 │   ├── index.html                   FARO landing
 │   └── faro-postcard-01/
@@ -26,6 +32,18 @@ postcards/
 │       ├── hero.png
 │       ├── logo.png                 Perlatecnica logo
 │       └── …
+├── belgium/
+│   ├── index.html                   Digitale Wolven landing
+│   └── digitale-wolven-postcard-01/ Scaffold, copy still to write
+│       ├── index.html
+│       └── texts.md
+├── spain/
+│   ├── index.html                   Gorgs IA Studio landing
+│   └── gorgs-postcard-01/           12 → 17 Jun 2026, the intensive week
+│       ├── index.html
+│       ├── hero.jpg
+│       ├── step-XX(-b/-c).jpg       3 photos per session
+│       └── texts.md
 └── template/
     └── index.html                   Original verso-flip template
 ```
@@ -37,7 +55,7 @@ postcards/
 - `/{country}/{team-slug}-postcard-{NN}/` — a single postcard
 
 Country slugs: `france`, `italy`, `spain`, `belgium`.
-Team slugs: `pacmans`, `faro`, `uab`, `digitale-wolven`.
+Team slugs: `pacmans`, `faro`, `gorgs`, `digitale-wolven`.
 
 ## Conventions
 
@@ -45,7 +63,11 @@ Team slugs: `pacmans`, `faro`, `uab`, `digitale-wolven`.
 - **Workshop photos** sit in a stack of 1 large + 2 thumbnails, with the colored border in the fiche's accent color.
 - **Triptych** in each fiche fills the right column: Activity (30%) · Who (20%) · Mood (50%).
 - **Best practice** is always framed around the youth at that age range, not the technology.
-- **Dates** in the past timeline show month + year only; dates in the future timeline show full DD/MM/YYYY when the dates are confirmed.
+- **Dates** in the past timeline show month + year only; dates in the future timeline show full DD/MM/YYYY when the dates are confirmed. A postcard covering a single week names the days (Monday to Friday) instead, the full range living in the cover pill and the postmark.
+- **Figures come from the semestrial syntheses** in `Local/ReportsActivities/Semestriel/`, not from the raw Notion follow-up exports: the Participants field of those exports mixes youth, facilitators and mentors, so counting it inflates every headcount.
+- **The forward-looking block** is titled "Next investigations" and carries no label chip, so it does not read as a schedule that has already slipped. A closing block replaces it entirely once a postcard has nothing pending: France 02 and Spain 01 use it to list what the week shipped.
+- **Waiting for photos**: a cover carries `class="cover-image … no-photo"` and a workshop photo `class="fiche-photo … no-photo"`. Both render a soft accent panel instead of a broken image. Drop the class once the file is in the folder.
+- **Waiting for a lab logo**: the stamp shows a `.s-name` text block. Drop `logo.png` in the folder and swap it for the `.s-logo` image.
 
 ## Shared assets
 
