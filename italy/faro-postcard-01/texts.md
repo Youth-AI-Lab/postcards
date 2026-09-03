@@ -90,7 +90,7 @@ Curious and competitive. The groups debated intensely about whether each example
 **Skill tree:** AI literacy · observation · digital citizenship · categorisation
 
 **Best practice:**
-At sixteen and seventeen, young people arrive with strong but mixed intuitions about AI. Starting from their own examples, then sorting them together, is what makes the boundary between automation and intelligence stick for good.
+At fourteen to seventeen, young people arrive with strong but mixed intuitions about AI. Starting from their own examples, then sorting them together, is what makes the boundary between automation and intelligence stick for good.
 
 **Pictures:** `step-01.png` · `step-01-b.png` · `step-01-c.png`
 
@@ -117,7 +117,7 @@ Engaged and serious. The paper was dense; the group followed it more closely tha
 **Skill tree:** LLM literacy · reinforcement learning · robotics · SDGs · system design
 
 **Best practice:**
-Pair an abstract concept (LLM limits, reinforcement learning) with a concrete handle (a real robot, a recent paper, an SDG). At sixteen and seventeen, young people need both ends of the bridge in the same session for the concept to land.
+Pair an abstract concept (LLM limits, reinforcement learning) with a concrete handle (a real robot, a recent paper, an SDG). At fourteen to seventeen, young people need both ends of the bridge in the same session for the concept to land.
 
 **Pictures:** `step-02.png` · `step-02-b.png` · `step-02-c.png`
 
@@ -144,7 +144,7 @@ Sharp and a bit indignant. They caught the AI making lazy assumptions, and calle
 **Skill tree:** bias detection · prompt design · data literacy · SDG 5 · classification
 
 **Best practice:**
-Show bias both as a social fact (laws, gaps) and as a technical fact (training data, classification boundaries). At sixteen and seventeen, the two read very differently, but young people start connecting them once both are on the table in the same session.
+Show bias both as a social fact (laws, gaps) and as a technical fact (training data, classification boundaries). At fourteen to seventeen, the two read very differently, but young people start connecting them once both are on the table in the same session.
 
 **Pictures:** `step-03.jpg` · `step-03-b.webp` · `step-03-c.png`
 
@@ -171,7 +171,7 @@ Engaged and a bit indignant. The City Audit hit close to home, then the live sen
 **Skill tree:** sensors · urban analysis · data literacy · SDG 11 · neural network · confusion matrix
 
 **Best practice:**
-Anchor an abstract Sustainable Development Goal in their own street. At sixteen and seventeen, young people take an SDG much more seriously once they have audited their own commute against it.
+Anchor an abstract Sustainable Development Goal in their own street. At fourteen to seventeen, young people take an SDG much more seriously once they have audited their own commute against it.
 
 **Pictures:** `step-04.png`
 
@@ -206,6 +206,6 @@ Monthly sessions are already on the calendar through May 2027, continuing the th
 - No em dashes (use `·` middle dots or commas/colons).
 - No captions on photos.
 - 4 fiches, each with: title, **What we ran** moment, Activity / Who / Mood triptych (30 / 20 / 50 %), Skill tree, Best practice.
-- The Best practice is meant to be about **the youth at sixteen and seventeen**, not the tech or logistics.
+- The Best practice is meant to be about **the youth at fourteen to seventeen**, not the tech or logistics.
 - Targets a general public audience.
 - All content describes what was done BEFORE 18 June 2026 (the Napoli posting date).
