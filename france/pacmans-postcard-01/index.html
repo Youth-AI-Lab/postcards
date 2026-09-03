@@ -21,8 +21,11 @@
     /* The sending city is the ground the card is posted on. It scrolls with the
        page, and the asset dissolves into the cream at its foot, so an unfolded
        card runs on into the page colour with no visible seam. */
-    background: url('city-full-t2.jpg') center top / 100% auto no-repeat scroll,
-      rgb(143, 143, 141);
+    /* The sending city is right-aligned behind the card, so the towers rise out
+       from under it. It scrolls with the page, and past the foot of the frame the
+       page simply continues on the cream, with no slab to run into. */
+    background: url('city-full-t2.jpg') right top / 1000px auto no-repeat scroll,
+      #f7f4e8;
     font-family: 'Manrope', system-ui, sans-serif; color: var(--ink);
     margin: 0; padding: 0;
   }
