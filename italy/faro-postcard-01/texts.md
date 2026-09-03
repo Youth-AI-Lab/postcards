@@ -32,7 +32,7 @@ Path: `Postcards/italy/faro-postcard-01/index.html`
 
 ### Subhead
 
-> Four workshops, February to May: spotting AI in everyday life; testing the limits of large language models through robotics and the Sustainable Development Goals; and examining gender bias in AI. More than twenty young explorers gathered at the Perlatecnica lab.
+> Four workshops, February to May: spotting AI in everyday life, probing the limits of large language models, examining gender bias in AI, and turning a Sustainable Development Goal into a city audit with robot sensors.
 
 Hero photo: `hero.png`
 

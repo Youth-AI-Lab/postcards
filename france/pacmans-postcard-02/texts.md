@@ -28,11 +28,11 @@ Path: `Postcards/france/pacmans-postcard-02/index.html`
 
 ### Headline
 
-> One week, three causes, and a chatbot that had to **prove it.**
+> Three causes, one week, a chatbot that had to **prove it.**
 
 ### Subhead
 
-> Five days at the Vent des Îles youth space in La Rochelle, paced by a sealed mission envelope opened every morning. Three teams voted their cause out of a Sustainable Development Goals bingo, then turned a general-purpose AI into a local expert: rules of conduct, personas, a field enquiry around the neighbourhood, a mascot, and a public reveal on the Friday.
+> Five days at the Vent des Îles youth space in La Rochelle, one sealed mission envelope opened each morning. Three teams voted their cause out of a Sustainable Development Goals bingo, then turned a general-purpose AI into a local expert.
 
 ### Stats
 

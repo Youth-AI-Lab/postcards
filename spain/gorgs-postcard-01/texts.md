@@ -32,11 +32,11 @@ Sources: the four reports in `Local/ReportsActivities/Catalonia/Reports/`, the f
 
 ### Headline
 
-> Four sessions to go from what is AI to a robot that **works.**
+> Four sessions from what is AI to a robot that **works.**
 
 ### Subhead
 
-> One intensive week in June, fifteen teams, a laptop and a robotics kit each. They sorted what is really AI from what is only automation, trained their own vision models and then broke them on purpose, poured a perceptron out of plastic cups and water, and finished by designing, wiring and testing a robot answering a Sustainable Development Goal they had picked themselves.
+> One intensive week, fifteen teams, a laptop and a robotics kit each. They sorted real AI from mere automation, trained their own vision models and broke them on purpose, then built and tested a robot for a Sustainable Development Goal they chose.
 
 Hero photo: `hero.jpg`
 

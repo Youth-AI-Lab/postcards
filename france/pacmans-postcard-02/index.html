@@ -18,31 +18,16 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
-    background:
-      radial-gradient(ellipse at 18% 12%, #ffd9f2 0%, transparent 42%),
-      radial-gradient(ellipse at 82% 72%, #cbecff 0%, transparent 46%),
-      #f7f4e8;
+    /* The sending city is the ground the card is posted on. Attached to the
+       viewport, so an unfolded card scrolls over it instead of running out of
+       photograph and ending on a flat slab. */
+    background: url('city-bg-a.jpg') center center / cover no-repeat fixed,
+      rgb(196, 196, 196);
     font-family: 'Manrope', system-ui, sans-serif; color: var(--ink);
     margin: 0; padding: 0;
   }
   html { overflow-x: hidden; }
   body { padding: 40px 0 40px; }
-  /* Watermark of the sending city in the page background. It scrolls with the
-     page and sits behind the card, so it reads in the band under the card and in
-     the margins beside it on a wide screen. */
-  body::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100vh;
-    background: url('city.jpg') center bottom / cover no-repeat;
-    opacity: 0.28;
-    /* soften the bottom cut so it dissolves into the cream instead of ending flat */
-    -webkit-mask-image: linear-gradient(to bottom, #000 0 calc(100% - 44px), transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 0 calc(100% - 44px), transparent 100%);
-    pointer-events: none;
-    z-index: -1;
-  }
   h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; }
 
   main {
@@ -612,8 +597,8 @@
           <span class="pill">Pacman's · France</span>
           <span class="pill blue">27 → 31 July 2026 · intensive week</span>
         </div>
-        <h1>One week, three causes, and a chatbot that had to <em>prove it.</em></h1>
-        <p class="subhead">Five days at the Vent des Îles youth space in La Rochelle, paced by a sealed mission envelope opened every morning. Three teams voted their cause out of a Sustainable Development Goals bingo, then turned a general-purpose AI into a local expert: rules of conduct, personas, a field enquiry around the neighbourhood, a mascot, and a public reveal on the Friday.</p>
+        <h1>Three causes, one week, a chatbot that had to <em>prove it.</em></h1>
+        <p class="subhead">Five days at the Vent des Îles youth space in La Rochelle, one sealed mission envelope opened each morning. Three teams voted their cause out of a Sustainable Development Goals bingo, then turned a general-purpose AI into a local expert.</p>
         <div class="stats">
           <div class="stat"><span class="n">5</span><span class="l">Days</span></div>
           <div class="stat s2"><span class="n">17h</span><span class="l">In the lab</span></div>
