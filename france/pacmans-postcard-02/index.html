@@ -50,6 +50,19 @@
       0 28px 70px rgba(0,0,0,0.16);
   }
 
+  /* Watermark of the sending city, printed into the card paper. Anchored to the
+     recto with a fixed height, so it stays put when the card is unfolded. */
+  .postcard::before {
+    content: '';
+    position: absolute;
+    top: 30px; right: 2%;
+    width: 46%; height: 700px;
+    background: url('city.jpg') right center / contain no-repeat;
+    opacity: 0.14;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .pc-inner { position: relative; z-index: 1; }
   .corner-fold { display: none; }
 
   .pc-inner {
