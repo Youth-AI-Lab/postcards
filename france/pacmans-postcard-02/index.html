@@ -50,20 +50,6 @@
       0 28px 70px rgba(0,0,0,0.16);
   }
 
-  /* Watermark of the sending city, drawn as a monoline SVG, printed into the card
-     paper. It scrolls with the card and sits under the content at whisper opacity. */
-  .postcard::before {
-    content: '';
-    position: absolute;
-    top: 96px; right: 3%;
-    width: 52%;
-    aspect-ratio: 1200 / 420;
-    background: url('city.svg') center / contain no-repeat;
-    opacity: 0.05;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .pc-inner { position: relative; z-index: 1; }
   .corner-fold { display: none; }
 
   .pc-inner {
