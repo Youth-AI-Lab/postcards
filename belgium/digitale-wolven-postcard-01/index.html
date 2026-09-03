@@ -18,22 +18,15 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
-    background: #c8ab82;
+    background:
+      radial-gradient(ellipse at 18% 12%, #dbffcb 0%, transparent 42%),
+      radial-gradient(ellipse at 82% 72%, #cbecff 0%, transparent 46%),
+      #f7f4e8;
     font-family: 'Manrope', system-ui, sans-serif; color: var(--ink);
     margin: 0; padding: 0;
   }
   html { overflow-x: hidden; }
   body { padding: 40px 0 40px; }
-  /* Airmail frame around the viewport, so the page itself reads as postal. */
-  body::after {
-    content: '';
-    position: fixed; inset: 0;
-    pointer-events: none; z-index: 3;
-    border: 16px solid transparent;
-    border-image: repeating-linear-gradient(45deg,
-      #d94a3d 0 12px, #fdfaf3 12px 24px,
-      #2b5fa8 24px 36px, #fdfaf3 36px 48px) 16;
-  }
   h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; }
 
   main {
@@ -54,7 +47,7 @@
       0 0 0 8px var(--blue) inset,
       0 0 0 11px #fffdf6 inset,
       0 0 0 13px var(--yellow) inset,
-      0 28px 70px rgba(0,0,0,0.28);
+      0 28px 70px rgba(0,0,0,0.16);
   }
 
   .corner-fold { display: none; }
