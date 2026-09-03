@@ -11,7 +11,7 @@ Sources: the four reports in `Local/ReportsActivities/Catalonia/Reports/`, the f
 
 ## Page title (browser tab)
 
-> Gorgs IA Studio · A Spanish postcard from the intensive week
+> Gorgs IA Studio · A Catalan postcard from the intensive week
 
 ---
 
@@ -27,7 +27,7 @@ Sources: the four reports in `Local/ReportsActivities/Catalonia/Reports/`, the f
 
 ### Pills
 
-- `Gorgs IA Studio · Spain`
+- `Gorgs IA Studio · Catalonia`
 - `12 → 17 June 2026 · intensive week`
 
 ### Headline

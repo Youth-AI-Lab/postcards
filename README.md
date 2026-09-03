@@ -55,6 +55,8 @@ postcards/
 - `/{country}/{team-slug}-postcard-{NN}/` — a single postcard
 
 Country slugs: `france`, `italy`, `spain`, `belgium`.
+The Catalan lab is named Catalonia everywhere it is written, not Spain. The URL slug
+stays `spain` so published links keep working.
 Team slugs: `pacmans`, `faro`, `gorgs`, `digitale-wolven`.
 
 ## Conventions
@@ -65,7 +67,7 @@ Team slugs: `pacmans`, `faro`, `gorgs`, `digitale-wolven`.
 - **Best practice** is always framed around the youth at that age range, not the technology.
 - **Dates** in the past timeline show month + year only; dates in the future timeline show full DD/MM/YYYY when the dates are confirmed. A postcard covering a single week names the days (Monday to Friday) instead, the full range living in the cover pill and the postmark.
 - **Figures come from the semestrial syntheses** in `Local/ReportsActivities/Semestriel/`, not from the raw Notion follow-up exports: the Participants field of those exports mixes youth, facilitators and mentors, so counting it inflates every headcount.
-- **The forward-looking block** is titled "Next investigations" and carries no label chip, so it does not read as a schedule that has already slipped. A closing block replaces it entirely once a postcard has nothing pending: France 02 and Spain 01 use it to list what the week shipped.
+- **The forward-looking block** is titled "Next investigations" and carries no label chip, so it does not read as a schedule that has already slipped. A closing block replaces it entirely once a postcard has nothing pending: France 02 and Catalonia 01 use it to list what the week shipped.
 - **Waiting for photos**: a cover carries `class="cover-image … no-photo"` and a workshop photo `class="fiche-photo … no-photo"`. Both render a soft accent panel instead of a broken image. Drop the class once the file is in the folder.
 - **Waiting for a lab logo**: the stamp shows a `.s-name` text block. Drop `logo.png` in the folder and swap it for the `.s-logo` image.
 
