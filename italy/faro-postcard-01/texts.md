@@ -51,5 +51,5 @@ Full copy as published, for review. Live: [https://youth-ai-lab.github.io/postca
 **Best practice** Anchor an abstract Sustainable Development Goal in their own street. At sixteen to seventeen, young people take an SDG much more seriously once they have audited their own commute against it.
 
 ## Next investigations
-**Dates** 23/09/2026 · 14/10/2026 · 11/11/2026 · 09/12/2026 · 13/01/2027 · 10/02/2027 · 10/03/2027 · 14/04/2027 · 12/05/2027
+**Dates** 30/09/2026 · 14/10/2026 · 28/10/2026 · 11/11/2026 · 25/11/2026 · 09/12/2026 · 16/12/2026 · 13/01/2027 · 27/01/2027 · 10/02/2027 · 25/02/2027 · 10/03/2027 · 24/03/2027 · 14/04/2027 · 28/04/2027 · 12/05/2027 · 26/05/2027
 Monthly sessions are already on the calendar through May 2027, continuing the threads opened in the first four workshops: AI literacy, robotics, and the Sustainable Development Goals. Details of each session will be shared as it is delivered.

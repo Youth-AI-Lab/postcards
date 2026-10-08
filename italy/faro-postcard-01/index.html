@@ -501,12 +501,15 @@
     color: var(--ink);
   }
 
-  /* ===== Timeline-many: 11 spots in one row + one shared subtext ===== */
+  /* ===== Timeline-many: 17 spots on two rows (9 + 8) + one shared subtext ===== */
   .timeline.timeline-many {
     grid-template-columns: repeat(9, 1fr);
     gap: 6px;
     padding: 18px 4px 0;
   }
+  /* second row of dates: one fewer spot, same full-width dashed line */
+  .timeline.timeline-many.cols-8 { grid-template-columns: repeat(8, 1fr); }
+  .timeline.timeline-many + .timeline.timeline-many { margin-top: 14px; }
   .timeline.timeline-many .t-step { padding: 0 2px; }
   .timeline.timeline-many .t-step .t-when {
     font-size: 9px;
@@ -901,21 +904,31 @@
         </div>
       </div>
 
-      <!-- ===== TIMELINE for upcoming (11 spots + shared subtext) ===== -->
+      <!-- ===== TIMELINE for upcoming (17 spots on two rows + shared subtext) ===== -->
       <div class="timeline-wrap">
         <div class="timeline-head">
           <h3>Next investigations</h3>
         </div>
         <div class="timeline timeline-many">
-          <div class="t-step"><div class="t-dot"></div><div class="t-when">23/09/2026</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">30/09/2026</div></div>
           <div class="t-step"><div class="t-dot"></div><div class="t-when">14/10/2026</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">28/10/2026</div></div>
           <div class="t-step"><div class="t-dot"></div><div class="t-when">11/11/2026</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">25/11/2026</div></div>
           <div class="t-step"><div class="t-dot"></div><div class="t-when">09/12/2026</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">16/12/2026</div></div>
           <div class="t-step"><div class="t-dot"></div><div class="t-when">13/01/2027</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">27/01/2027</div></div>
+        </div>
+        <div class="timeline timeline-many cols-8">
           <div class="t-step"><div class="t-dot"></div><div class="t-when">10/02/2027</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">25/02/2027</div></div>
           <div class="t-step"><div class="t-dot"></div><div class="t-when">10/03/2027</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">24/03/2027</div></div>
           <div class="t-step"><div class="t-dot"></div><div class="t-when">14/04/2027</div></div>
-          <div class="t-step tomorrow"><div class="t-dot"></div><div class="t-when">12/05/2027</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">28/04/2027</div></div>
+          <div class="t-step"><div class="t-dot"></div><div class="t-when">12/05/2027</div></div>
+          <div class="t-step tomorrow"><div class="t-dot"></div><div class="t-when">26/05/2027</div></div>
         </div>
         <p class="coming-text">
           Monthly sessions are already on the calendar through May 2027, continuing the threads opened in the first four workshops: AI literacy, robotics, and the Sustainable Development Goals. Details of each session will be shared as it is delivered.
